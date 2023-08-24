@@ -9,6 +9,22 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 class Functions
 {
 
+    public static function showNotification(): void
+    {
+        $template_html = '
+        <div class="container">
+            <div class="notification">
+                <p class="notification__text notification--%s">%s</p>
+            </div>
+        </div>
+        ';
+        if (isset($_SESSION['notification'])) {
+            $notification = $_SESSION['notification'];
+            echo sprintf($template_html, $notification['type'], $notification['content']);
+            unset($_SESSION['notification']);
+        }
+    }
+
     public static function createNotification(string $type, string $content): bool
     {
         $_SESSION['notification'] = [

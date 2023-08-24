@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use App\Crud\Users\{Create, Delete, ListItems, Read, Update};
+use App\Functions;
 use App\Models\{Amenity, Gallery, Hotel, Photo, Room, User};
 use App\WebPage;
 
@@ -30,6 +31,8 @@ $page = WebPage::init("Exercises", "Php Exercises App - Home Page");
             <h1><?php echo $page->getTitle() ?></h1>
             <p><?php echo $page->getDescription() ?></p>
         </div>
+
+        <?php Functions::showNotification() ?>
 
         <div class="container">
             <div class="row">

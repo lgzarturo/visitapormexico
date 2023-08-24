@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
+use App\Functions;
 use App\WebPage;
 
 $page = WebPage::init("Random Image", "Generate a random image with the Picsum API");
@@ -45,16 +46,7 @@ if ($image !== null) {
             <p><?php echo $page->getDescription() ?></p>
         </div>
 
-        <div class="container">
-            <?php if ($notification) : ?>
-                <div class="notification">
-                    <p class="notification__text <?php echo $notification['type'] === 'success' ? 'notification--success' : 'notification--error' ?>">
-                        <?php echo $notification['content'] ?>
-                    </p>
-                </div>
-                <?php unset($_SESSION['notification']) ?>
-            <?php endif; ?>
-        </div>
+        <?php Functions::showNotification() ?>
 
         <div class="container">
             <div class="row">
