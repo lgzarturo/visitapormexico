@@ -6,6 +6,7 @@ namespace App\Examples\Password;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+use App\Functions;
 use App\WebPage;
 
 class SecurePassword
@@ -134,19 +135,12 @@ try {
             'size' => $size,
             'password' => $securePassword->__toString()
         ];
-        $_SESSION['notification'] = [
-            'type' => 'success',
-            'content' => 'Random Password Generated Successfully'
-        ];
-        header('Location: /password.php');
-        exit;
+        Functions::createNotification('success', 'Random Password Generated Successfully');
+        Functions::redirect('/password');
     }
 } catch (\Exception $e) {
     $error = $e->getMessage();
     $page->getFramework()->error($error);
-    $_SESSION['notification'] = [
-        'type' => 'error',
-        'content' => $error
-    ];
-    header('Location: /password.php?error=true');
+    Functions::createNotification('error', $error);
+    Functions::redirect('/password', ['error' => true]);
 }

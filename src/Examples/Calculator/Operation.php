@@ -6,6 +6,7 @@ namespace App\Examples\Calculator;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+use App\Functions;
 use App\WebPage;
 
 class Operation
@@ -112,19 +113,12 @@ try {
             'result' => $operation->getResult(),
             'human' => $operation->__toString()
         ];
-        $_SESSION['notification'] = [
-            'type' => 'success',
-            'content' => 'Operation generated successfully'
-        ];
-        header('Location: /calculator.php');
-        exit;
+        Functions::createNotification('success', 'Operation generated successfully');
+        Functions::redirect('/calculator');
     }
 } catch (\Exception $e) {
     $error = $e->getMessage();
     $page->getFramework()->error($error);
-    $_SESSION['notification'] = [
-        'type' => 'error',
-        'content' => $error
-    ];
-    header('Location: /calculator.php?error=true');
+    Functions::createNotification('error', $error);
+    Functions::redirect('/calculator', ['error' => true]);
 }

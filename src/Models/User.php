@@ -6,15 +6,15 @@ namespace App\Models;
 
 require_once dirname(__DIR__) . '/../vendor/autoload.php';
 
-class Amenity
+class User
 {
     private string $name;
-    private string $description;
-    private string $image;
-    private string $icon;
+    private string $email;
+    private string $status;
+    private int $createAt;
 
     public function __construct()
     {
-        echo 'Amenity class instantiated';
+        echo 'User class instantiated';
     }
 }

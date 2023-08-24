@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
+use App\Crud\Users\{Create, Delete, ListItems, Read, Update};
+use App\Models\{Amenity, Gallery, Hotel, Photo, Room, User};
 use App\WebPage;
 
-$page = WebPage::init("Calculator", "Simple Calculator App");
+$page = WebPage::init("Exercises", "Php Exercises App - Home Page");
 
 ?>
 <!doctype html>
@@ -31,64 +33,44 @@ $page = WebPage::init("Calculator", "Simple Calculator App");
 
         <div class="container">
             <div class="row">
-                <div class="col-6">
+                <div class="col-12">
                     <div class="card">
                         <div class="card__header">
                             <h2 class="card__title">
-                                Complete the form below
-                            </h2>
-                        </div>
-                        <form action="src/Examples/Calculator/Operation.php" method="POST">
-                            <div class="card__body">
-                                <div class="card__text">
-                                    <fieldset>
-                                        <legend>
-                                            Please fill out the form below to generate a random image
-                                        </legend>
-                                        <div class="field">
-                                            <label for="width" class="field__label field__label--required">First Number:</label>
-                                            <input type="number" class="field__input" name="firstNumber" placeholder="" required>
-                                            <span id="width__helper" class="field__helper"></span>
-                                            <span id="width__feedback" class="field__feedback"></span>
-                                        </div>
-                                        <div class="field">
-                                            <label for="height" class="field__label field__label--required">Second Number:</label>
-                                            <input type="number" class="field__input" name="secondNumber" placeholder="" required>
-                                            <span id="height__helper" class="field__helper"></span>
-                                            <span id="height__feedback" class="field__feedback"></span>
-                                        </div>
-                                        <div class="field">
-                                            <label for="filter" class="field__label">Filter:</label>
-                                            <select class="field__input" name="filter" id="filter" required>
-                                                <option value="">Please select a filter</option>
-                                                <option value="+">+</option>
-                                                <option value="-">-</option>
-                                                <option value="*">*</option>
-                                                <option value="/">/</option>
-                                            </select>
-                                            <span class="field__helper"></span>
-                                            <span class="field__feedback"></span>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="card__footer">
-                                <button type="submit" class="btn btn--primary card__button">Button</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card__header">
-                            <h2 class="card__title">
-                                Result: <span class="card__title--normal">Random Image</span>
+                                List of Exercises
                             </h2>
                         </div>
                         <div class="card__body">
-                            <div id="random__image">
-
+                            <div class="card__text">
+                                <ul>
+                                    <li><a href="calculator.php">Calculator</a></li>
+                                    <li><a href="password.php">Password</a></li>
+                                    <li><a href="process_image.php">Image Random</a></li>
+                                    <li><a href="tasks.php">Task Manager</a></li>
+                                </ul>
                             </div>
+
+                            <h3>Models</h3>
+                            <ul>
+                                <li><?php new Amenity() ?></li>
+                                <li><?php new Gallery() ?></li>
+                                <li><?php new Hotel() ?></li>
+                                <li><?php new Photo() ?></li>
+                                <li><?php new Room() ?></li>
+                                <li><?php new User() ?></li>
+                            </ul>
+
+                            <h3>Crud</h3>
+                            <ul>
+                                <li><?php new Create() ?></li>
+                                <li><?php new Delete() ?></li>
+                                <li><?php new ListItems() ?></li>
+                                <li><?php new Read() ?></li>
+                                <li><?php new Update() ?></li>
+                            </ul>
+                        </div>
+                        <div class="card__footer">
+                            This is the footer
                         </div>
                     </div>
                 </div>
@@ -102,6 +84,7 @@ $page = WebPage::init("Calculator", "Simple Calculator App");
         </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="assets/js/main.min.js" type="application/javascript"></script>
     <script>
         $(document).ready(function() {});
     </script>

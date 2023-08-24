@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
+
+require_once dirname(__DIR__) . '/../vendor/autoload.php';
 
 class Room
 {
@@ -13,4 +17,9 @@ class Room
     private array $amenities;
     private array $photos;
     private Hotel $hotel;
+
+    public function __construct()
+    {
+        echo 'Room class instantiated';
+    }
 }

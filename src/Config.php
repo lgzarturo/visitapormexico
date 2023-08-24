@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
 use Monolog\Level;
+
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 // Define DS as the directory separator
 const DS = DIRECTORY_SEPARATOR;

@@ -6,6 +6,7 @@ namespace App\Examples\Password;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+use App\Functions;
 use App\WebPage;
 
 class RandomNumber
@@ -50,19 +51,12 @@ try {
     if ($_POST) {
         $randomNumber = RandomNumber::create();
         $_SESSION['number'] = $randomNumber->__toString();
-        $_SESSION['notification'] = [
-            'type' => 'success',
-            'content' => 'Random Number Generated Successfully'
-        ];
-        header('Location: /password.php');
-        exit;
+        Functions::createNotification('success', 'Random Number Generated Successfully');
+        Functions::redirect('/password');
     }
 } catch (\Exception $e) {
     $error = $e->getMessage();
     $page->getFramework()->error($error);
-    $_SESSION['notification'] = [
-        'type' => 'error',
-        'content' => $error
-    ];
-    header('Location: /password.php?error=true');
+    Functions::createNotification('error', $error);
+    Functions::redirect('/password', ['error' => true]);
 }

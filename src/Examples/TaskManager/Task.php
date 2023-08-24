@@ -6,6 +6,7 @@ namespace App\Examples\TaskManager;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+use App\Functions;
 use App\WebPage;
 use Exception;
 
@@ -110,12 +111,8 @@ try {
                 break;
         }
 
-        $_SESSION['notification'] = [
-            'type' => 'success',
-            'content' => $message
-        ];
-        header('Location: /tasks.php');
-        exit;
+        Functions::createNotification('success', $message);
+        Functions::redirect('/tasks');
     }
 
     if ($_POST) {
@@ -134,19 +131,12 @@ try {
         $tasks = $_SESSION['tasks'];
         $tasks[] = $task;
         $_SESSION['tasks'] = $tasks;
-        $_SESSION['notification'] = [
-            'type' => 'success',
-            'content' => 'Task added'
-        ];
-        header('Location: /tasks.php');
-        exit;
+        Functions::createNotification('success', 'Task added');
+        Functions::redirect('/tasks');
     }
 } catch (\Exception $e) {
     $error = $e->getMessage();
     $page->getFramework()->error($error);
-    $_SESSION['notification'] = [
-        'type' => 'error',
-        'content' => $error
-    ];
-    header('Location: /tasks.php?error=true');
+    Functions::createNotification('error', $error);
+    Functions::redirect('/tasks', ['error' => true]);
 }

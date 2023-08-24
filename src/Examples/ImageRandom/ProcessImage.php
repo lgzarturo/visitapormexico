@@ -6,6 +6,7 @@ namespace App\Examples\ImageRandom;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+use App\Functions;
 use App\WebPage;
 
 class ProcessImage
@@ -87,19 +88,12 @@ try {
             'height' => $height,
             'filter' => $filter
         ];
-        $_SESSION['notification'] = [
-            'type' => 'success',
-            'content' => 'Image generated successfully'
-        ];
-        header('Location: /index.php');
-        exit;
+        Functions::createNotification('success', 'Image generated successfully');
+        Functions::redirect('/process_image');
     }
 } catch (\Exception $e) {
     $error = $e->getMessage();
     $page->getFramework()->error($error);
-    $_SESSION['notification'] = [
-        'type' => 'error',
-        'content' => $error
-    ];
-    header('Location: /index.php?error=true');
+    Functions::createNotification('error', $error);
+    Functions::redirect('/process_image', ['error' => true]);
 }

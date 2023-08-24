@@ -5,3 +5,4 @@
 /assets/css/*.map
 !/assets/css/normalize.css
 /assets/js/*.min.js
+/assets/js/*.min.js.map

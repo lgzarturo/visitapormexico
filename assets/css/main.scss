@@ -67,7 +67,7 @@ body {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         grid-gap: 15px;
-        .col-6 {
+        .col-12, .col-6 {
             grid-column: span 1;
         }
     }
@@ -233,6 +233,9 @@ body {
     .container {
         .row {
             grid-template-columns: repeat(2, 1fr);
+            .col-12 {
+                grid-column: span 2;
+            }
             .col-6 {
                 grid-column: span 1;
             }
@@ -255,6 +258,9 @@ body {
     .container {
         .row {
             grid-template-columns: repeat(4, 1fr);
+            .col-12 {
+                grid-column: span 4;
+            }
             .col-6 {
                 grid-column: span 2;
             }
@@ -285,6 +291,9 @@ body {
     .container {
         .row {
             grid-template-columns: repeat(12, 1fr);
+            .col-12 {
+                grid-column: span 12;
+            }
             .col-6 {
                 grid-column: span 6;
             }

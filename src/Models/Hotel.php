@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
+
+require_once dirname(__DIR__) . '/../vendor/autoload.php';
 
 class Hotel
 {
@@ -21,4 +25,9 @@ class Hotel
     private float $price;
     private string $currency;
     private array $rooms;
+
+    public function __construct()
+    {
+        echo 'Hotel class instantiated';
+    }
 }
