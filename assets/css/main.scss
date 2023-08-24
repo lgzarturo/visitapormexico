@@ -1,0 +1,303 @@
+/*
+    Theme variables of colors
+    ========================================================================== */
+
+:root {
+    --primary: #1e88e5;
+    --primary-dark: #0d47a1;
+    --primary-light: #64b5f6;
+    --secondary: #ff4081;
+    --secondary-dark: #a71155;
+    --secondary-light: #ff80ab;
+    --tertiary: #ff6f00;
+    --tertiary-dark: #993300;
+    --tertiary-light: #ffab40;
+    --grey: #bdbdbd;
+    --grey-dark: #757575;
+    --grey-light: #e0e0e0;
+    --black: #212121;
+    --black-dark: #000;
+    --black-light: #484848;
+    --success: #4caf50;
+    --success-dark: #08631a;
+    --success-light: #80e27e;
+    --warning: #ffeb3b;
+    --warning-dark: #874508;
+    --warning-light: #fff176;
+    --danger: #f44336;
+    --danger-dark: #a91919;
+    --danger-light: #ef5350;
+    --info: #2196f3;
+    --info-dark: #01579b;
+    --info-light: #64b5f6;
+    --white: #fff;
+    --white-dark: #e0e0e0;
+}
+
+/*
+    General styles
+    ========================================================================== */
+
+html {
+    font-size: 66.5%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+/*
+    Layout settings
+    ========================================================================== */
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    .row {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 15px;
+        .col-6 {
+            grid-column: span 1;
+        }
+    }
+}
+
+.footer {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--grey-dark);
+}
+
+/*
+    Custom elements
+    ========================================================================== */
+
+.card {
+    background-color: #fff;
+    border-radius: 1rem;
+    border: 1px solid var(--grey-light);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    .card__header,
+    .card__footer {
+        padding: 1rem 1.5rem;
+    }
+    .card__body {
+        padding: 2rem 1.5rem;
+    }
+    .card__footer {
+        border-top: 1px solid var(--grey-light);
+    }
+    .card__header {
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.5rem;
+        font-weight: 700;
+        border-bottom: 1px solid var(--grey-light);
+        .card__title {
+            margin: 0;
+            font-size: 2rem;
+            .card__title--normal {
+                font-weight: 400;
+            }
+        }
+    }
+    .card__header--primary,
+    .card__header--secondary,
+    .card__header--tertiary,
+    .card__header--success,
+    .card__header--warning,
+    .card__header--danger {
+        border-radius: 1rem 1rem 0 0;
+        color: var(--white);
+    }
+
+    .card__header--primary {
+        background-color: var(--primary);
+    }
+    .card__header--secondary {
+        background-color: var(--secondary);
+    }
+    .card__header--tertiary {
+        background-color: var(--tertiary);
+    }
+    .card__header--success {
+        background-color: var(--success);
+    }
+    .card__header--warning {
+        background-color: var(--warning);
+    }
+    .card__header--danger {
+        background-color: var(--danger);
+    }
+    .card__header--info {
+        background-color: var(--info);
+    }
+    .card__body {
+        .card__text {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            &:last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+        .card__image {
+            width: 100%;
+            height: auto;
+        }
+    }
+    .card__button {
+        display: block;
+        width: 100%;
+    }
+}
+
+.btn {
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+    padding: 1rem 3rem;
+    border-radius: 0.5rem;
+    background-color: var(--black-dark);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 400;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background-color: var(--black);
+    }
+}
+
+.btn--primary {
+    background-color: var(--primary-dark);
+    &:hover {
+        background-color: var(--primary);
+    }
+}
+
+/**
+    Media queries reset small devices
+    ========================================================================== */
+
+@media (max-width: 480px) {
+    .container {
+        .row {
+            .col__mobile--first {
+                grid-row-start: -2;
+            }
+            .col__mobile--second {
+                grid-row-end: 2;
+            }
+        }
+    }
+}
+
+/**
+    Media queries reset to bigger devices
+    ========================================================================== */
+
+@media (min-width: 480px) {
+    .row {
+        grid-auto-rows: 1fr;
+        .card {
+            min-height: 100%;
+            justify-content: space-between;
+            .card__body {
+                flex: 1;
+            }
+        }
+    }
+}
+
+/*
+    Media query to tablet
+    ========================================================================== */
+
+@media (min-width: 480px) and (max-width: 768px) {
+    .container {
+        .row {
+            grid-template-columns: repeat(2, 1fr);
+            .col-6 {
+                grid-column: span 1;
+            }
+            .card {
+                .card__body {
+                    max-height: 20rem;
+                    overflow: hidden;
+                    overflow-y: scroll;
+                }
+            }
+        }
+    }
+}
+
+/*
+    Media query to laptop
+    ========================================================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        .row {
+            grid-template-columns: repeat(4, 1fr);
+            .col-6 {
+                grid-column: span 2;
+            }
+            .card {
+                .card__body {
+                    max-height: 20rem;
+                    overflow: hidden;
+                    overflow-y: scroll;
+                }
+            }
+        }
+    }
+}
+
+/*
+    Media query to larger desktop
+    ========================================================================== */
+
+@media (min-width: 1025px) {
+    html {
+        font-size: 62.5%;
+    }
+
+    body {
+        font-size: 1.8rem;
+    }
+
+    .container {
+        .row {
+            grid-template-columns: repeat(12, 1fr);
+            .col-6 {
+                grid-column: span 6;
+            }
+        }
+    }
+    .card {
+        .card__footer {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+        }
+        .card__button {
+            width: auto;
+        }
+    }
+}

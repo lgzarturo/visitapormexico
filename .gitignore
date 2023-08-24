@@ -1,0 +1,7 @@
+/vendor/
+/logs/
+/.idea/
+/assets/css/*.css
+/assets/css/*.map
+!/assets/css/normalize.css
+/assets/js/*.min.js

@@ -1,0 +1,20 @@
+{
+    "name": "lgzarturo/visitapormexico",
+    "description": "Proyecto para promocionar los hoteles",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Arturo López",
+            "email": "lgzarturo@gmail.com"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "^3.4"
+    }
+}
