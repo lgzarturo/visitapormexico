@@ -7,51 +7,51 @@ namespace App\Crud\Users;
 use App\Database;
 use App\Functions;
 use App\WebPage;
-use Exception;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
-class Read
+class UpdateStatus
 {
     public function __construct()
     {
-        echo 'Read User';
+        echo 'Update User Status';
     }
 
-    public static function getUser(array $data): void
+    public static function setStatus(array $data)
     {
-        $page = WebPage::init("Read User", "/users/read");
+        $page = WebPage::init('Update status User', '/users/update/status');
         try {
             array_map('trim', $data);
             if (!isset($data['id'])) {
                 throw new \Exception('Invalid user');
             }
+            if (!isset($data['status'])) {
+                throw new \Exception('Invalid status');
+            }
             $id = (int) $data['id'];
+            $status = $data['status'];
             if ($id <= 0) {
                 throw new \Exception('Invalid user');
             }
+            if (!in_array($status, ['active', 'inactive'])) {
+                throw new \Exception('Invalid status');
+            }
             $connection = Database::connect();
-            $sql = 'SELECT * FROM users WHERE id = :id';
+            $sql = 'UPDATE users SET status = :status WHERE id = :id';
             $statement = $connection->prepare($sql);
             $statement->bindParam('id', $id, \PDO::PARAM_INT);
+            $statement->bindParam('status', $status, \PDO::PARAM_STR);
             $statement->execute();
-            $user = $statement->fetch();
             $connection = null;
-            if (!$user) {
-                throw new \Exception('User not found');
-            }
-            $_SESSION['user'] = $user;
-            Functions::createNotification('success', sprintf('User %s loaded successfully', $id));
+            $page->getFramework()->info(sprintf('User %s updated successfully', $id));
+            Functions::createNotification('success', sprintf('User %s updated successfully', $id));
             Functions::redirect('/users');
         } catch (\Exception $e) {
+            $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
             Functions::createNotification('error', $e->getMessage());
-            Functions::redirect('/users', ['error' => true]);
-        } catch (\PDOException $e) {
-            $page->getFramework()->error(sprintf("Error: %s", $e->getMessage()));
-            Functions::createNotification('error', 'Server error');
             Functions::redirect('/users', ['error' => true]);
         }
     }
 }
 
-Read::getUser($_GET);
+UpdateStatus::setStatus($_GET);

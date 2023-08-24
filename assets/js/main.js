@@ -3,4 +3,6 @@ $(document).ready(function() {
     $('body').prepend('<div class="container"><a href="/index.php">Back to Home</a></div>');
   }
   $('.notification').delay(3000).slideUp(300);
+  const element = document.getElementById("user_dialog");
+  element.open = true;
 });
