@@ -8,6 +8,9 @@ use App\WebPage;
 
 $page = WebPage::init("Task", "Task Manager App");
 
+$notification = isset($_SESSION['notification']) ? $_SESSION['notification'] : null;
+
+$tasks = isset($_SESSION['tasks']) ? $_SESSION['tasks'] : null;
 ?>
 <!doctype html>
 <html lang="en">
@@ -30,6 +33,17 @@ $page = WebPage::init("Task", "Task Manager App");
         </div>
 
         <div class="container">
+            <?php if ($notification) : ?>
+                <div class="notification">
+                    <p class="notification__text <?php echo $notification['type'] === 'success' ? 'notification--success' : 'notification--error' ?>">
+                        <?php echo $notification['content'] ?>
+                    </p>
+                </div>
+                <?php unset($_SESSION['notification']) ?>
+            <?php endif; ?>
+        </div>
+
+        <div class="container">
             <div class="row">
                 <div class="col-6">
                     <div class="card">
@@ -38,42 +52,24 @@ $page = WebPage::init("Task", "Task Manager App");
                                 Complete the form below
                             </h2>
                         </div>
-                        <form action="src/Examples/Calculator/Operation.php" method="POST">
+                        <form action="src/Examples/TaskManager/Task.php" method="POST">
                             <div class="card__body">
                                 <div class="card__text">
                                     <fieldset>
                                         <legend>
-                                            Please fill out the form below to generate a random image
+
                                         </legend>
                                         <div class="field">
-                                            <label for="width" class="field__label field__label--required">First Number:</label>
-                                            <input type="number" class="field__input" name="firstNumber" placeholder="" required>
+                                            <label for="width" class="field__label field__label--required">Task:</label>
+                                            <input type="text" class="field__input" name="task" placeholder="" required>
                                             <span id="width__helper" class="field__helper"></span>
                                             <span id="width__feedback" class="field__feedback"></span>
-                                        </div>
-                                        <div class="field">
-                                            <label for="height" class="field__label field__label--required">Second Number:</label>
-                                            <input type="number" class="field__input" name="secondNumber" placeholder="" required>
-                                            <span id="height__helper" class="field__helper"></span>
-                                            <span id="height__feedback" class="field__feedback"></span>
-                                        </div>
-                                        <div class="field">
-                                            <label for="filter" class="field__label">Filter:</label>
-                                            <select class="field__input" name="filter" id="filter" required>
-                                                <option value="">Please select a filter</option>
-                                                <option value="+">+</option>
-                                                <option value="-">-</option>
-                                                <option value="*">*</option>
-                                                <option value="/">/</option>
-                                            </select>
-                                            <span class="field__helper"></span>
-                                            <span class="field__feedback"></span>
                                         </div>
                                     </fieldset>
                                 </div>
                             </div>
                             <div class="card__footer">
-                                <button type="submit" class="btn btn--primary card__button">Button</button>
+                                Please push "Enter"
                             </div>
                         </form>
                     </div>
@@ -82,12 +78,32 @@ $page = WebPage::init("Task", "Task Manager App");
                     <div class="card">
                         <div class="card__header">
                             <h2 class="card__title">
-                                Result: <span class="card__title--normal">Random Image</span>
+                                Result: <span class="card__title--normal">Tasks</span>
                             </h2>
                         </div>
                         <div class="card__body">
-                            <div id="random__image">
+                            <div id="tasks">
+                                <?php if ($tasks) : ?>
+                                    <ul>
+                                        <?php foreach (array_reverse($tasks) as $task) : ?>
 
+                                            <li>
+                                                <?php if ($task->isCompleted()) : ?>
+                                                    <s><?php echo $task ?></s>
+                                                <?php else : ?>
+                                                    <?php echo $task ?>
+                                                <?php endif; ?>
+                                                &nbsp;
+                                                <a href="src/Examples/TaskManager/Task.php?id=<?php echo $task->getId() ?>&action=delete">Borrar</a>
+                                                &nbsp;
+                                                <a href="src/Examples/TaskManager/Task.php?id=<?php echo $task->getId() ?>&action=edit">Editar</a>
+                                                &nbsp;
+                                                <a href="src/Examples/TaskManager/Task.php?id=<?php echo $task->getId() ?>&action=complete">Completar</a>
+                                            </li>
+
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
