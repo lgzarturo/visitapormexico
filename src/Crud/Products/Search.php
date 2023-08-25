@@ -52,7 +52,6 @@ class Search
                 $sql .= 'LOWER(title) LIKE :word_' . $iterations . ' OR LOWER(description) LIKE :word_' . $iterations . ' OR ';
                 $iterations++;
             }
-            //$sql = substr($sql, 0, -3);
             $sql .= 'LOWER(title) LIKE :full_term OR LOWER(description) LIKE :full_term ';
             $sql .= 'ORDER BY id DESC';
             $statement = $connection->prepare($sql);

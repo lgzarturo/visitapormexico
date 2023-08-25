@@ -92,7 +92,7 @@ if ($searchQuery !== null) {
                                             <li>
                                                 <a href="product.php?id=<?php echo $result['id'] ?>"><?php echo $result['title'] ?></a>&nbsp;
                                                 <span class="badge badge--success">
-                                                    <?php echo "$" . $result['price'] ?>
+                                                    <?php echo "$" . number_format((float)$result['price'], 2, '.', '') ?>
                                                 </span>
                                             </li>
                                         <?php endforeach ?>
