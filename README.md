@@ -21,3 +21,12 @@
 - Se busca que el framework sea simple y fácil de usar.
 - Primero se desarrollará el framework y luego se creará una aplicación de ejemplo.
 - Se piensa usar el patrón MVC para después hacer un micro framework.
+
+### Entorno de desarrollo
+
+- Herd 1.2.0 - Build 14
+- Composer 2.5.5
+- PHP 8.2.9
+- MySQL 8.0
+- Prepros 7.9.0
+- Visual Studio Code
