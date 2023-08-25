@@ -4,5 +4,16 @@ $(document).ready(function() {
   }
   $('.notification').delay(3000).slideUp(300);
   const element = document.getElementById("user_dialog");
-  element.open = true;
+  if (element) {
+    element.open = true;
+  }
 });
+
+const showPassword = document.getElementById('show_password');
+const password = document.getElementById('password');
+
+if (showPassword && password) {
+  showPassword.onchange = function () {
+    password.type = this.checked ? 'text' : 'password';
+  }
+}

@@ -59,14 +59,20 @@ Login::getCurrentUser($_GET);
                                     </div>
                                     <div class="field">
                                         <label for="password" class="field__label field__label--required">Password:</label>
-                                        <input type="password" class="field__input" name="password" placeholder="Please enter your password" tabindex="2" required autocomplete="off">
+                                        <input type="password" class="field__input" name="password" id="password" placeholder="Please enter your password" tabindex="2" required autocomplete="off">
+                                        <span id="width__helper" class="field__helper"></span>
+                                        <span id="width__feedback" class="field__feedback"></span>
+                                    </div>
+                                    <div class="field">
+                                        <input type="checkbox" class="field__input" name="show_password" id="show_password" tabindex="3">
+                                        <label for="show_password" class="field__label">Show password</label>
                                         <span id="width__helper" class="field__helper"></span>
                                         <span id="width__feedback" class="field__feedback"></span>
                                     </div>
                                 </fieldset>
                             </div>
                             <div class="card__footer">
-                                <button type="submit" class="btn btn--primary" tabindex="3">Proceed to login</button>
+                                <button type="submit" class="btn btn--primary" tabindex="4">Proceed to login</button>
                             </div>
                         </form>
                     </div>
