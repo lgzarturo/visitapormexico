@@ -34,10 +34,10 @@ class Update
             if (!isset($data['status'])) {
                 throw new \Exception('Invalid status');
             }
-            $id = (int) $data['id'];
-            $name = $data['name'];
-            $email = $data['email'];
-            $status = $data['status'];
+            $id = filter_var($data['id'], FILTER_SANITIZE_NUMBER_INT);
+            $name = htmlspecialchars($data['name']);
+            $email = htmlspecialchars($data['email']);
+            $status = htmlspecialchars($data['status']);
             if ($id <= 0) {
                 throw new \Exception('Invalid user');
             }
@@ -51,6 +51,14 @@ class Update
                 throw new \Exception('Invalid status');
             }
             $connection = Database::connect();
+            $sql = 'SELECT * FROM users WHERE id = :id LIMIT 1';
+            $statement = $connection->prepare($sql);
+            $statement->bindParam('id', $id, \PDO::PARAM_INT);
+            $statement->execute();
+            $user = $statement->fetch(\PDO::FETCH_ASSOC);
+            if (empty($user)) {
+                throw new \Exception('User not found');
+            }
             $sql = 'UPDATE users SET name = :name, email = :email, status = :status WHERE id = :id';
             $statement = $connection->prepare($sql);
             $statement->bindParam('id', $id, \PDO::PARAM_INT);

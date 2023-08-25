@@ -37,6 +37,14 @@ class UpdateStatus
                 throw new \Exception('Invalid status');
             }
             $connection = Database::connect();
+            $sql = 'SELECT * FROM users WHERE id = :id LIMIT 1';
+            $statement = $connection->prepare($sql);
+            $statement->bindParam('id', $id, \PDO::PARAM_INT);
+            $statement->execute();
+            $user = $statement->fetch(\PDO::FETCH_ASSOC);
+            if (empty($user)) {
+                throw new \Exception('User not found');
+            }
             $sql = 'UPDATE users SET status = :status WHERE id = :id';
             $statement = $connection->prepare($sql);
             $statement->bindParam('id', $id, \PDO::PARAM_INT);

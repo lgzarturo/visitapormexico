@@ -52,6 +52,7 @@ $page = WebPage::init("Exercises", "Php Exercises App - Home Page");
                                     <li><a href="process_image.php">Image Random</a></li>
                                     <li><a href="tasks.php">Task Manager</a></li>
                                     <li><a href="users.php">User Manager</a></li>
+                                    <li><a href="search.php">Search</a></li>
                                 </ul>
                             </div>
 
@@ -63,15 +64,6 @@ $page = WebPage::init("Exercises", "Php Exercises App - Home Page");
                                 <li><?php new Photo() ?></li>
                                 <li><?php new Room() ?></li>
                                 <li><?php new User() ?></li>
-                            </ul>
-
-                            <h3>Crud</h3>
-                            <ul>
-                                <li><?php new Create() ?></li>
-                                <li><?php new Delete() ?></li>
-                                <li><?php new ListItems() ?></li>
-                                <li><?php new Read() ?></li>
-                                <li><?php new Update() ?></li>
                             </ul>
                         </div>
                         <div class="card__footer">

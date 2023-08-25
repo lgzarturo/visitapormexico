@@ -35,9 +35,9 @@ class Read
             $statement = $connection->prepare($sql);
             $statement->bindParam('id', $id, \PDO::PARAM_INT);
             $statement->execute();
-            $user = $statement->fetch();
+            $user = $statement->fetch(\PDO::FETCH_ASSOC);
             $connection = null;
-            if (!$user) {
+            if (empty($user)) {
                 throw new \Exception('User not found');
             }
             $_SESSION['user'] = $user;
