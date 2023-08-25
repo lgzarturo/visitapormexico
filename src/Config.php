@@ -15,7 +15,14 @@ const DS = DIRECTORY_SEPARATOR;
 define("App\BASE_PATH", dirname(__DIR__));
 
 /**
+ * Config class.
+ *
  * This class will load the configuration for the application
+ *
+ * This class represents the configuration settings for the application.
+ * It sets the error reporting, display errors, log errors, log file, and log level.
+ * It also provides methods to get the log file and log level, and to initialize the configuration.
+ *
  * @package App
  */
 class Config
@@ -45,6 +52,11 @@ class Config
         return $this->logLevel;
     }
 
+    /**
+     * Sets the configuration for error reporting and logging.
+     *
+     * @return void
+     */
     final public function config(): void
     {
         // Show all errors
@@ -60,6 +72,11 @@ class Config
         ini_set('error_log', $this->logFile);
     }
 
+    /**
+     * Initializes the Config class and calls the config method.
+     *
+     * @return self Returns an instance of the Config class.
+     */
     final public static function init(): self
     {
         $self = new self();

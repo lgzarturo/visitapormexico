@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
-use App\Crud\Users\{Create, Delete, ListItems, Read, Update};
 use App\Functions;
 use App\Models\{Amenity, Gallery, Hotel, Photo, Room, User};
 use App\WebPage;
@@ -53,6 +52,7 @@ $page = WebPage::init("Exercises", "Php Exercises App - Home Page");
                                     <li><a href="tasks.php">Task Manager</a></li>
                                     <li><a href="users.php">User Manager</a></li>
                                     <li><a href="search.php">Search</a></li>
+                                    <li><a href="login.php">Login</a></li>
                                 </ul>
                             </div>
 

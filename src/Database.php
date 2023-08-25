@@ -8,6 +8,23 @@ use PDO;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
+/**
+ * Database class.
+ *
+ * The Database class represents a connection to a MySQL database.
+ *
+ * @property string $engine The database engine.
+ * @property string $host The database host.
+ * @property int $port The database port.
+ * @property string $user The database username.
+ * @property string $password The database password.
+ * @property string $database The database name.
+ * @property string $charset The database charset.
+ * @property string $dsn The database DSN.
+ * @property PDO $connection The database connection.
+ *
+ * @package App
+ */
 class Database
 {
     private string $engine;
@@ -40,6 +57,11 @@ class Database
         );
     }
 
+    /**
+     * Establishes a connection to the database and returns a PDO object.
+     *
+     * @return PDO The PDO object representing the database connection.
+     */
     public static function connect(): PDO
     {
         try {

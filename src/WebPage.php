@@ -7,15 +7,41 @@ namespace App;
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 /**
- * This class is the entry point of the webapp
+ * Framework class.
+ *
+ * Represents a web page, is the base class for all web pages.
+ *
  * @package App
  */
 class WebPage
 {
+    /**
+     * The framework instance used by the web page.
+     *
+     * @var Framework
+     */
     private Framework $framework;
+
+    /**
+     * The title of the web page.
+     *
+     * @var string
+     */
     private string $title;
+
+    /**
+     * The description of the web page.
+     *
+     * @var string
+     */
     private string $description;
 
+    /**
+     * Creates a new instance of the WebPage class.
+     *
+     * @param string $title The title of the web page.
+     * @param string $description The description of the web page.
+     */
     private function __construct(string $title, string $description)
     {
         $this->framework = Framework::init(
@@ -29,21 +55,43 @@ class WebPage
         $this->description = $description;
     }
 
+    /**
+     * Initializes a new instance of the WebPage class.
+     *
+     * @param string $title The title of the web page.
+     * @param string $description The description of the web page.
+     * @return self
+     */
     final public static function init(string $title, string $description): self
     {
         return new self($title, $description);
     }
 
+    /**
+     * Gets the framework instance used by the web page.
+     *
+     * @return Framework
+     */
     final public function getFramework(): Framework
     {
         return $this->framework;
     }
 
+    /**
+     * Gets the title of the web page.
+     *
+     * @return string
+     */
     final public function getTitle(): string
     {
         return $this->title;
     }
 
+    /**
+     * Gets the description of the web page.
+     *
+     * @return string
+     */
     final public function getDescription(): string
     {
         return $this->description;

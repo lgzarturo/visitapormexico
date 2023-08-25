@@ -7,7 +7,6 @@ namespace App\Crud\Users;
 use App\Database;
 use App\Functions;
 use App\WebPage;
-use Exception;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 

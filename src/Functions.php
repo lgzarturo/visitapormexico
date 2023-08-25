@@ -6,9 +6,24 @@ namespace App;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
+/**
+ * Functions class.
+ *
+ * This class contains static methods that can be used throughout the application.
+ *
+ * @package App
+ */
 class Functions
 {
 
+    /**
+     * Displays a dialog box with user information.
+     *
+     * @return void
+     *
+     * @uses $_SESSION['user'] The session variable containing user information.
+     *
+     */
     public static function showUser()
     {
         $template_html = '
@@ -39,6 +54,11 @@ class Functions
         }
     }
 
+    /**
+     * Displays a notification message to the user.
+     *
+     * @return void
+     */
     public static function showNotification(): void
     {
         $template_html = '
@@ -55,6 +75,13 @@ class Functions
         }
     }
 
+    /**
+     * Creates a notification and stores it in the session.
+     *
+     * @param string $type The type of the notification.
+     * @param string $content The content of the notification.
+     * @return bool Returns true if the notification was successfully created and stored in the session, false otherwise.
+     */
     public static function createNotification(string $type, string $content): bool
     {
         $_SESSION['notification'] = [
@@ -64,6 +91,13 @@ class Functions
         return true;
     }
 
+    /**
+     * Redirects the user to the specified path with optional query parameters.
+     *
+     * @param string $path The path to redirect to.
+     * @param array $params Optional query parameters to include in the redirect URL.
+     * @return void
+     */
     public static function redirect(string $path, array $params = [])
     {
         $query = null;

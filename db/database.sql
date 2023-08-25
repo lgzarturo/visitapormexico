@@ -15,6 +15,7 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100),
     email VARCHAR(100),
+    password VARCHAR(200),
     status VARCHAR(50),
     creation_date DATE
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -33,16 +34,16 @@ CREATE TABLE products (
 -- Insert 10 sample users
 INSERT INTO users (name, email, status, creation_date)
 VALUES
-    ('User 1', 'user1@example.com', 'active', '2023-08-23'),
-    ('User 2', 'user2@example.com', 'inactive', '2023-08-23'),
-    ('User 3', 'user3@example.com', 'active', '2023-08-23'),
-    ('User 4', 'user4@example.com', 'inactive', '2023-08-23'),
-    ('User 5', 'user5@example.com', 'active', '2023-08-23'),
-    ('User 6', 'user6@example.com', 'active', '2023-08-23'),
-    ('User 7', 'user7@example.com', 'inactive', '2023-08-23'),
-    ('User 8', 'user8@example.com', 'active', '2023-08-23'),
-    ('User 9', 'user9@example.com', 'inactive', '2023-08-23'),
-    ( 'User 10', 'user10@example.com', 'active', '2023-08-23');
+    ('User 1', 'user1@example.com', '', 'active', '2023-08-23'),
+    ('User 2', 'user2@example.com', '', 'inactive', '2023-08-23'),
+    ('User 3', 'user3@example.com', '', 'active', '2023-08-23'),
+    ('User 4', 'user4@example.com', '', 'inactive', '2023-08-23'),
+    ('User 5', 'user5@example.com', '', 'active', '2023-08-23'),
+    ('User 6', 'user6@example.com', '', 'active', '2023-08-23'),
+    ('User 7', 'user7@example.com', '', 'inactive', '2023-08-23'),
+    ('User 8', 'user8@example.com', '', 'active', '2023-08-23'),
+    ('User 9', 'user9@example.com', '', 'inactive', '2023-08-23'),
+    ( 'User 10', 'user10@example.com', '', 'active', '2023-08-23');
 
 -- Insert 20 sample products
 INSERT INTO products (title, description, price)

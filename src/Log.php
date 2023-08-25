@@ -12,15 +12,41 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Formatter\LineFormatter;
 
 /**
- * This class will handle all the logging
+ * Log class.
+ *
+ * The Log class provides a simple interface for logging messages to a file.
+ *
  * @package App
  */
 class Log
 {
+    /**
+     * The path to the log file.
+     *
+     * @var string
+     */
     private string $logFile;
+
+    /**
+     * The logger instance.
+     *
+     * @var Logger
+     */
     private Logger $log;
+
+    /**
+     * The logging level.
+     *
+     * @var Level
+     */
     private Level $level;
 
+    /**
+     * Creates a new Log instance.
+     *
+     * @param Config $config The configuration object.
+     * @param string $name The name of the logger.
+     */
     private function __construct(Config $config, string $name)
     {
         $this->logFile = $config->getLogFile();
@@ -34,21 +60,46 @@ class Log
         $this->log->pushHandler($stream);
     }
 
+    /**
+     * Logs an error message.
+     *
+     * @param string $message The message to log.
+     * @return void
+     */
     final public function error(string $message): void
     {
         $this->log->error($message);
     }
 
+    /**
+     * Logs an info message.
+     *
+     * @param string $message The message to log.
+     * @return void
+     */
     final public function info(string $message): void
     {
         $this->log->info($message);
     }
 
+    /**
+     * Logs a debug message.
+     *
+     * @param string $message The message to log.
+     * @return void
+     */
     final public function debug(string $message): void
     {
         $this->log->debug($message);
     }
 
+    /**
+     * Initializes a new Log instance.
+     *
+     * @param Config $config The configuration object.
+     * @param string $name The name of the logger.
+     * @return self
+     */
     final public static function init(Config $config, string $name): self
     {
         return new self($config, $name);
