@@ -1,6 +1,6 @@
 $(document).ready(function() {
   if (window.location.pathname !== '/index.php') {
-    $('body').prepend('<div class="container"><a href="/index.php">Back to Home</a></div>');
+    $('body').prepend('<div class="container"><a href="/index.php">Back to Home</a>&nbsp;<a href="/login.php?action=logout">Logout</a</div>');
   }
   $('.notification').delay(3000).slideUp(300);
   const element = document.getElementById("user_dialog");

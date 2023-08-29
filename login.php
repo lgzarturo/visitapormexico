@@ -10,7 +10,12 @@ use App\WebPage;
 
 $page = WebPage::init("Login", "User Login Page");
 
-Login::getCurrentUser($_GET);
+Login::logoutSession();
+
+if (isset($_POST) && !empty($_POST)) {
+    Login::authentication($_POST);
+}
+Login::getCurrentUser();
 
 ?>
 <!doctype html>
