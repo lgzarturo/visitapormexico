@@ -10,13 +10,26 @@ use App\WebPage;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+/**
+ * Update class.
+ *
+ * This class represents a utility that updates a user in the database.
+ *
+ * @package App\Crud\Users
+ *
+ */
 class Update
 {
-    public function __construct()
-    {
-        echo 'Update User';
-    }
-
+    /**
+     * Update user data in the database.
+     *
+     * @param array $data An array containing user data to be updated.
+     * Commonly the data comes from the $_POST super global.
+     *
+     * @return void
+     *
+     * @throws \Exception If user data is invalid or user is not found.
+     */
     public static function execute(array $data)
     {
         $page = WebPage::init('Update User', '/users/update');
@@ -78,4 +91,5 @@ class Update
     }
 }
 
+// This is the entry point of the script using the $_POST super global.
 Update::execute($_POST);

@@ -9,6 +9,21 @@ require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 use App\Functions;
 use App\WebPage;
 
+/**
+ * RandomNumber class.
+ *
+ * The RandomNumber class generates a random number between a minimum and maximum value.
+ * The generated number is stored in the session and can be retrieved as a string.
+ *
+ * @property int $min The minimum value for the generated number.
+ * @property int $max The maximum value for the generated number.
+ * @property int $num The generated number.
+ * @property int $result The result of the generated number.
+ * @property array $numbers An array of previously generated numbers stored in the session.
+ *
+ * @package App\Examples\Password
+ *
+ */
 class RandomNumber
 {
     private int $min = 4;
@@ -44,6 +59,8 @@ class RandomNumber
         return new RandomNumber();
     }
 }
+
+// In the following snippet, we are using the RandomNumber class to generate a random number.
 
 try {
     $page = WebPage::init("Random Number", "Generate Random Number");

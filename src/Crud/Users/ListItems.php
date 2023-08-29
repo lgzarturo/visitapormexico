@@ -9,13 +9,22 @@ use Exception;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+/**
+ * ListItems class.
+ *
+ * This class represents a utility that returns an array of all users in the database, ordered by id in descending order.
+ *
+ * @package App\Crud\Users
+ *
+ */
 class ListItems
 {
-    public function __construct()
-    {
-        echo 'List Items User';
-    }
-
+    /**
+     * Returns an array of all users in the database, ordered by id in descending order.
+     *
+     * @return array An array of all users in the database.
+     * @throws Exception If there is an error executing the SQL statement.
+     */
     public static function getAll(): array
     {
         try {

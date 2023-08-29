@@ -53,7 +53,7 @@ $page = WebPage::init("Exercises", "Php Exercises App - Home Page");
                                     <li><a href="users.php">User Manager</a></li>
                                     <li><a href="search.php">Search</a></li>
                                     <li><a href="login.php">Login</a></li>
-                                    <li><a href="html.php">Exercises in HTML</a></li>
+                                    <li><a href="html.php">Exercises in HTML y Vanilla Javascript</a></li>
                                 </ul>
                             </div>
 

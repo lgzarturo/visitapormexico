@@ -10,13 +10,27 @@ use App\WebPage;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+/**
+ * Read class.
+ *
+ * This class represents a utility that reads a user from the database.
+ *
+ * @package App\Crud\Users
+ *
+ */
 class Read
 {
-    public function __construct()
-    {
-        echo 'Read User';
-    }
-
+    /**
+     * Retrieves a user from the database and stores it in the session.
+     *
+     * @param array $data An array containing the user ID.
+     * Commonly the data comes from the $_GET super global.
+     *
+     * @return void
+     *
+     * @throws \Exception If the user ID is invalid or the user is not found.
+     * @throws \PDOException If there is an error executing the SQL statement.
+     */
     public static function getUser(array $data): void
     {
         $page = WebPage::init("Read User", "/users/read");
@@ -39,6 +53,7 @@ class Read
             if (empty($user)) {
                 throw new \Exception('User not found');
             }
+            // Store the user in the session.
             $_SESSION['user'] = $user;
             Functions::createNotification('success', sprintf('User %s loaded successfully', $id));
             Functions::redirect('/users');
@@ -53,4 +68,5 @@ class Read
     }
 }
 
+// This is the entry point of the script using the $_GET super global.
 Read::getUser($_GET);

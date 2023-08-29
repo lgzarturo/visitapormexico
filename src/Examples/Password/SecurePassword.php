@@ -9,6 +9,20 @@ require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 use App\Functions;
 use App\WebPage;
 
+/**
+ * SecurePassword class.
+ *
+ * The SecurePassword class generates a secure password with the following requirements:
+ * - At least one special character from the set '!@#$%^&*()_-=+;:,.?'.
+ * - At least one number from the set '0123456789'.
+ * - At least one lowercase letter from the set 'abcdefghijklmnopqrstuvwxyz'.
+ * - At least one uppercase letter from the set 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.
+ * - At least six characters from the set '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.
+ * - The password length must be at least 8 characters and at most 128 characters.
+ *
+ * @package App\Examples\Password
+ *
+ */
 class SecurePassword
 {
 
@@ -74,6 +88,11 @@ class SecurePassword
         return $password;
     }
 
+    /**
+     * Generates a secure password with a combination of special characters, numbers, lower and upper case letters.
+     *
+     * @return string The generated password.
+     */
     private function generatePassword(): string
     {
         $this->password = '';
@@ -111,6 +130,8 @@ class SecurePassword
         return new SecurePassword($size);
     }
 }
+
+// In the following snippet, we are using the SecurePassword class to generate a random password.
 
 try {
     $page = WebPage::init("Random Password", "Generate Random Password");

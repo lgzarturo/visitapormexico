@@ -10,13 +10,30 @@ use App\WebPage;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+/**
+ * Search class
+ *
+ * @package App\Crud\Products
+ *
+ * This class provides a static method to execute a search query on the products table.
+ * The search query is performed based on the given search term.
+ * The search term is split into words and each word is used to search for matches in the title and description columns of the products table.
+ * The search results are returned as an array of associative arrays, where each associative array represents a row in the products table.
+ * If an error occurs during the search, an exception is thrown and an error notification is created.
+ *
+ */
 class Search
 {
-    public function __construct()
-    {
-        echo 'Search Product';
-    }
-
+    /**
+     * Executes a search for products based on the given data.
+     *
+     * @param array $data An array containing the search term.
+     *
+     * @return array An array containing the search results.
+     *
+     * @throws \Exception If all fields are required or if the term is empty.
+     * @throws \PDOException If there is a server error.
+     */
     public static function execute(array $data): array
     {
         $results = [];
@@ -35,12 +52,15 @@ class Search
             }
             $words = explode(' ', $term);
             $iterations = 0;
+            // This array contains the terms that will be omitted from the search.
             $omitTerms = [
                 'a', 'an', 'the', 'and', 'or', 'but', 'nor', 'on', 'at', 'to', 'from', 'by', 'of', 'off', 'for', 'in',
                 'out', 'over', 'with', 'as', 'el', 'la', 'los', 'las', 'y', 'o', 'u', 'de', 'del', 'al', 'a', 'ante',
                 'bajo', 'cabe', 'con', 'contra', 'desde', 'en', 'entre', 'color'
             ];
             $connection = Database::connect();
+            // Construct the SQL statement for each word in the search term.
+            // The SQL statement is constructed dynamically based on the number of words in the search term.
             $sql = 'SELECT DISTINCT * FROM products WHERE ';
             foreach ($words as $word) {
                 if ($iterations >= 10) {

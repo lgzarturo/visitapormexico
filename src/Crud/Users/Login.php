@@ -9,13 +9,27 @@ use App\WebPage;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+/**
+ * Login class.
+ *
+ * This class represents a user login utility.
+ *
+ * @package App\Crud\Users
+ *
+ */
 class Login
 {
-    public function __construct()
-    {
-        echo 'Login User';
-    }
-
+    /**
+     * Authenticates a user with the provided credentials.
+     *
+     * @param array $data An array containing the user's login credentials.
+     * Commonly the data comes from the $_POST super global.
+     *
+     * @return void
+     *
+     * @throws \Exception If the user is not found or the credentials are invalid.
+     * @throws \PDOException If there is an error with the database connection.
+     */
     public static function authentication(array $data): void
     {
         $page = WebPage::init("Login", "User Login Page");
@@ -23,6 +37,7 @@ class Login
         $username = htmlspecialchars($data['username']);
         $password = $data['password'];
         $salt = "s4lty-s4lt-4nd-p3pp3r-4r3-1mp0rt4nt-1n-cr3d3nt14ls";
+        // This is a dummy user, replace it with your own user data.
         $userDummy = [
             'id' => 1,
             'username' => 'admin',
@@ -63,6 +78,14 @@ class Login
         }
     }
 
+    /**
+     * Retrieves the current user from the session and redirects to the index page.
+     *
+     * @return void
+     *
+     * @throws \Exception If an error occurs while retrieving the user.
+     * @throws \PDOException If a database error occurs.
+     */
     public static function getCurrentUser(): void
     {
         $page = WebPage::init("Get Current User", "/users/current");
@@ -82,6 +105,12 @@ class Login
         }
     }
 
+    /**
+     * Logout the current user session.
+     *
+     * @return void
+     *
+     */
     public static function logoutSession(): void
     {
         $page = WebPage::init("Logout", "/users/logout");

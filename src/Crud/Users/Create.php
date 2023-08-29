@@ -10,13 +10,27 @@ use App\WebPage;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+/**
+ * Create class
+ *
+ * @package App\Crud\Users
+ *
+ * This class contains a static method `execute` that creates a new user in the database.
+ *
+ */
 class Create
 {
-    public function __construct()
-    {
-        echo 'Create User';
-    }
-
+    /**
+     * Creates a new user in the database with the provided data.
+     *
+     * @param array $data An associative array containing the user's name, email and status.
+     * Commonly the data comes from the $_POST super global.
+     *
+     * @throws \Exception If any of the required fields are missing or invalid.
+     * @throws \PDOException If there is an error with the database connection or query.
+     *
+     * @return void
+     */
     public static function execute(array $data)
     {
         $page = WebPage::init('Create User', '/users/create');
@@ -69,4 +83,5 @@ class Create
     }
 }
 
+// This is the entry point of the script using the $_POST super global.
 Create::execute($_POST);

@@ -10,13 +10,25 @@ use App\WebPage;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+/**
+ * UpdateStatus class.
+ *
+ * This class contains a static method setStatus that updates the status of a user in the database.
+ *
+ * @package App\Crud\Users
+ */
 class UpdateStatus
 {
-    public function __construct()
-    {
-        echo 'Update User Status';
-    }
-
+    /**
+     * Updates the status of a user in the database.
+     *
+     * @param array $data An array containing the user ID and the new status.
+     * Commonly the data comes from the $_GET super global.
+     *
+     * @throws \Exception If the user ID or status is invalid, or if the user is not found in the database.
+     *
+     * @return void
+     */
     public static function setStatus(array $data)
     {
         $page = WebPage::init('Update status User', '/users/update/status');
@@ -62,4 +74,5 @@ class UpdateStatus
     }
 }
 
+// This is the entry point of the script using the $_GET super global.
 UpdateStatus::setStatus($_GET);

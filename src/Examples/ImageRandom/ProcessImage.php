@@ -9,6 +9,15 @@ require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 use App\Functions;
 use App\WebPage;
 
+/**
+ * ProcessImage class.
+ *
+ * This class represents an image processing utility that generates image URLs based on the provided width, height, and filter.
+ * The generated URLs can be used to fetch images from the Picsum.photos API.
+ *
+ * @package App\Examples\ImageRandom
+ *
+ */
 class ProcessImage
 {
 
@@ -45,16 +54,33 @@ class ProcessImage
         return $this->getImageUrl();
     }
 
+    /**
+     * Creates a new ProcessImage instance with the specified width, height and filter.
+     *
+     * @param float $width The width of the image.
+     * @param float $height The height of the image.
+     * @param string $filter The filter to apply to the image.
+     * @return ProcessImage A new ProcessImage instance.
+     */
     public static function create(float $width, float $height, string $filter = ''): ProcessImage
     {
         return new ProcessImage($width, $height, $filter);
     }
 
+    /**
+     * Creates a new square image with the specified size and filter.
+     *
+     * @param float $size The size of the square image.
+     * @param string $filter The filter to apply to the image.
+     * @return ProcessImage The new ProcessImage instance.
+     */
     public static function createSquareImage(float $size, string $filter = ''): ProcessImage
     {
         return new ProcessImage($size, $size, $filter);
     }
 }
+
+// In the following snippet, we are using the ProcessImage class to generate a random image.
 
 try {
     $page = WebPage::init("VisitaPorMexico", "Random Image App");

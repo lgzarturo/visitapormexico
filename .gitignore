@@ -1,5 +1,5 @@
 /vendor/
-/logs/
+/logs/*.log
 /.idea/
 /assets/css/*.css
 /assets/css/*.map

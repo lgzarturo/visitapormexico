@@ -9,13 +9,43 @@ require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 use App\Functions;
 use App\WebPage;
 
+/**
+ * Operation class.
+ *
+ * Represents a mathematical operation between two numbers.
+ *
+ * @package App\Examples\Calculator
+ *
+ */
 class Operation
 {
+    /**
+     * @var string The operation symbol (+, -, *, /)
+     */
     private string $operation;
+
+    /**
+     * @var float The first number of the operation
+     */
     private float $firstNumber;
+
+    /**
+     * @var float The second number of the operation
+     */
     private float $secondNumber;
+
+    /**
+     * @var float The result of the operation
+     */
     private float $result;
 
+    /**
+     * Creates a new Operation instance.
+     *
+     * @param float $firstNumber The first number of the operation
+     * @param float $secondNumber The second number of the operation
+     * @param string $operation The operation symbol (+, -, *, /)
+     */
     private function __construct(float $firstNumber, float $secondNumber, string $operation)
     {
         $this->firstNumber = $firstNumber;
@@ -24,6 +54,12 @@ class Operation
         $this->calculate();
     }
 
+    /**
+     * Calculates the result of the operation.
+     *
+     * @return float The result of the operation
+     * @throws \InvalidArgumentException If the operation symbol is invalid
+     */
     public function calculate(): float
     {
         switch ($this->operation) {
@@ -77,11 +113,21 @@ class Operation
         return $this->result;
     }
 
+    /**
+     * Creates a new Operation instance.
+     *
+     * @param float $firstNumber The first number of the operation
+     * @param float $secondNumber The second number of the operation
+     * @param string $operation The operation symbol (+, -, *, /)
+     * @return self The new Operation instance
+     */
     public static function create(float $firstNumber, float $secondNumber, string $operation): self
     {
         return new self($firstNumber, $secondNumber, $operation);
     }
 }
+
+// In the following snippet, we are using the Operation class to perform a simple calculation.
 
 try {
     $page = WebPage::init("VisitaPorMexico", "Random Image App");

@@ -7,10 +7,14 @@
 - users.php: Este ejemplo es para realizar un CRUD de usuarios.
 - search.php: En este ejemplo se muestra como realizar una búsqueda en una base de datos.
 - login.php: Ejemplo de como realizar un login con PHP.
+- html.php: Aquí he puesto en práctica lo que voy aprendiendo de JavaScript.
 
-> Nota: Este repositorio se irá actualizando con más ejemplos, será un repositorio de referencia sobre PHP 8.2.
-> Son ejercicios simples que estoy realizando para aprender PHP 8.2.
-> Se irán agregando ejemplos mientras voy cursando los cursos de [Academia Joystick](https://www.academy.joystick.com.mx/).
+> Notas:
+>
+> - Este repositorio se irá actualizando con más ejemplos, será un repositorio de referencia sobre PHP 8.2.
+> - Son ejercicios simples que estoy realizando para aprender PHP 8.2.
+> - Se irán agregando ejemplos mientras voy cursando los cursos de [Academia Joystick](https://www.academy.joystick.com.mx/).
+> - La documentación y mensajes del código fuente estará en ingles, pero los archivos '*.md' de los ejemplos estarán en español.
 
 ## Ideas propuestas para el proyecto final
 
@@ -33,7 +37,11 @@ El proyecto se llama "Visita Por Mexico" y es un proyecto para promover el turis
 
 Usando el framework se creará una aplicación web para promover el turismo en México de una forma simple y fácil de usar.
 
-Pienso usar la base de hoteles de la empresa [Revenatium](https://www.revenatium.com/) para mostrar los hoteles de México.
+Pienso usar la base de hoteles de la empresa en la que trabajo ([Revenatium](https://www.revenatium.com/)) para promocionar los hoteles de México mediante SEO y redes sociales.
+
+Busco mejorar mis técnicas de SEO orgánico y aprender a usar las redes sociales para promocionar los hoteles de México.
+
+> En general mi objetivo es crear una aplicación web que sea simple y fácil de usar, que sea rápida y que tenga un buen SEO.
 
 ### Entorno de desarrollo
 
@@ -43,3 +51,34 @@ Pienso usar la base de hoteles de la empresa [Revenatium](https://www.revenatium
 - MySQL 8.0
 - Prepros 7.9.0
 - Visual Studio Code
+
+### Instalación
+
+- Clonar el repositorio.
+- Ejecutar `composer install`.
+- Se usa la dependencia de monolog para los logs de la aplicación.
+- Ejecutar Prepros para compilar los archivos de Sass.
+- Crear la base de datos que se encuentra en la carpeta `db` para MySQL, que sirve para los ejemplos de `users.php` y `search.php`.
+
+## Sobre la estructura del proyecto
+
+- `assets`: Contiene los archivos de Sass y JavaScript, que se compilan con Prepros.
+  - `css`: Contiene los archivos de CSS.
+  - `js`: Contiene los archivos de JavaScript.
+  - `img`: Contiene las imágenes, de momento solo hay un favicon.
+- `db`: Contiene la base de datos para MySQL.
+  - `database.sql`: Contiene la base de datos para el ejemplo de `users.php` y `search.php`.
+- `logs`: Dentro de esta carpeta se guardan los logs de la aplicación.
+- `src`: Contiene el código fuente de la aplicación.
+  - `Crud`: Contiene las clases para realizar un CRUD.
+  - `Examples`: Contiene los ejemplos de la aplicación.
+  - `Models`: Contiene las clases para el modelo de la aplicación.
+- `vendor`: Contiene las dependencias de Composer.
+
+> Importante:
+>
+> - Estoy usando PSR-4 para el `autoloading` de clases, por eso todas las clases están en la carpeta `src`.
+> - La carpeta `src` será la carpeta raíz del proyecto.
+> - Mi idea es trabajar con namespaces para organizar las clases y usar el `autoloading` de Composer.
+> - También tengo pensado ir evolucionando el proyecto usando buenas prácticas de programación y orientación a objetos.
+> - No se si sea correcto pero estoy cargando el archivo `autoload.php` de Composer con un `require_once` en cada archivo de la carpeta `src`.

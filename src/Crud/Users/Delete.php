@@ -10,13 +10,26 @@ use App\WebPage;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
+/**
+ * Delete class
+ *
+ * @package App\Crud\Users
+ *
+ * This class handles the deletion of a user from the database.
+ *
+ */
 class Delete
 {
-    public function __construct()
-    {
-        echo 'Delete User';
-    }
-
+    /**
+     * Deletes a user from the database.
+     *
+     * @param array $data An array containing the user's id.
+     * Commonly the data comes from the $_GET super global.
+     *
+     * @throws \Exception If the user id is invalid or not found.
+     *
+     * @return void
+     */
     public static function execute(array $data)
     {
         $page = WebPage::init('Delete User', '/users/delete');
@@ -54,4 +67,5 @@ class Delete
     }
 }
 
+// This is the entry point of the script using the $_GET super global.
 Delete::execute($_GET);
