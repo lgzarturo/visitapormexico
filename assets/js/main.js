@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('body').prepend('<div class="container"><a href="/index.php">Back to Home</a>&nbsp;<a href="/login.php?action=logout">Logout</a</div>');
   }
   // Slide up notifications after 3 seconds
-  $('.notification').delay(3000).slideUp(300);
+  //$('.notification').delay(3000).slideUp(300);
   // Open dialog if user is not logged in
   const element = document.getElementById("user_dialog");
   if (element) {

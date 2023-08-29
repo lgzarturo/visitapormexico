@@ -32,6 +32,9 @@
     --info-light: #64b5f6;
     --white: #fff;
     --white-dark: #e0e0e0;
+    --dark: #333;
+    --light: #f5f5f5;
+    --link: #1e88e5;
     --rounded: 0;
 }
 
@@ -54,6 +57,78 @@ body {
     line-height: 1.6;
     color: var(--black);
     background-color: var(--white);
+}
+
+/*
+    Typography
+    ========================================================================== */
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    margin: 0;
+    font-weight: 700;
+}
+
+h1, .h1 {
+    font-size: 4.8rem;
+}
+
+h2, .h2 {
+    font-size: 4rem;
+}
+
+h3, .h3 {
+    font-size: 3.2rem;
+}
+
+h4, .h4 {
+    font-size: 2.4rem;
+}
+
+h5, .h5 {
+    font-size: 1.8rem;
+}
+
+h6, .h6 {
+    font-size: 1.6rem;
+}
+
+p {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: var(--link);
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        color: var(--black-dark);
+    }
+}
+
+.lead {
+    font-size: 2.4rem;
+    font-weight: 400;
+}
+
+strong, em, small, mark, del, ins, sub, sup, abbr, q, cite, code, kbd samp, var, li  {
+    font-weight: 400;
+    border-radius: var(--rounded);
+    padding: 0.2rem 0.4rem;
+}
+
+strong {
+    font-weight: 700;
+}
+
+em {
+    font-style: italic;
+}
+
+small {
+    font-size: 1.4rem;
 }
 
 /*
@@ -85,6 +160,110 @@ body {
 /*
     Custom elements
     ========================================================================== */
+
+.header {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--grey-light);
+    margin-bottom: 2rem;
+    .header__title {
+        margin: 0;
+        font-size: 2.4rem;
+        font-weight: 700;
+    }
+}
+
+.section {
+    margin-bottom: 2rem !important;
+    .section__header {
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--grey-light);
+    }
+    .section__title {
+        margin: 0;
+        font-size: 2.4rem;
+        font-weight: 700;
+    }
+    .section__subtitle {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 400;
+    }
+}
+
+.title {
+    margin: 0;
+    font-size: 5rem;
+    font-weight: lighter;
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+.notification {
+    border-radius: var(--rounded);
+    border: 1px solid var(--grey-light);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    .notification--primary {
+        background-color: var(--primary-light);
+        border-color: var(--primary-dark);
+        color: var(--primary-dark);
+    }
+    .notification--secondary {
+        background-color: var(--secondary-light);
+        border-color: var(--secondary-dark);
+        color: var(--secondary-dark);
+    }
+    .notification--tertiary {
+        background-color: var(--tertiary-light);
+        border-color: var(--tertiary-dark);
+        color: var(--tertiary-dark);
+    }
+    .notification--success {
+        background-color: var(--success-light);
+        border-color: var(--success-dark);
+        color: var(--success-dark);
+    }
+    .notification--warning {
+        background-color: var(--warning);
+        border-color: var(--warning-light);
+        color: var(--warning-dark);
+    }
+    .notification--danger {
+        background-color: var(--danger);
+        border-color: var(--danger-dark);
+        color: var(--white);
+    }
+    .notification--info {
+        background-color: var(--info-light);
+        border-color: var(--info-dark);
+        color: var(--info-dark);
+    }
+    .notification__text {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 700;
+        padding: 1.6rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+    }
+    .notification__button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 2rem;
+        color: var(--dark);
+        transition: all 0.3s ease-in-out;
+        &:hover {
+            color: var(--black-light);
+            rotate: 90deg;
+        }
+    }
+}
 
 .card {
     background-color: #fff;
@@ -121,10 +300,9 @@ body {
     .card__header--secondary,
     .card__header--tertiary,
     .card__header--success,
-    .card__header--warning,
     .card__header--danger {
         border-radius: var(--rounded) var(--rounded) 0 0;
-        color: var(--white);
+        color: var(--light);
     }
 
     .card__header--primary {

@@ -46,14 +46,15 @@ $page = WebPage::init("Exercises", "Php Exercises App - Home Page");
                         <div class="card__body">
                             <div class="card__text">
                                 <ul>
-                                    <li><a href="calculator.php">Calculator</a></li>
-                                    <li><a href="password.php">Password</a></li>
-                                    <li><a href="process_image.php">Image Random</a></li>
-                                    <li><a href="tasks.php">Task Manager</a></li>
-                                    <li><a href="users.php">User Manager</a></li>
-                                    <li><a href="search.php">Search</a></li>
-                                    <li><a href="login.php">Login</a></li>
+                                    <li><a href="calculator.php">Calculate numbers</a></li>
+                                    <li><a href="password.php">Generate secure password</a></li>
+                                    <li><a href="process_image.php">Generate random image</a></li>
+                                    <li><a href="tasks.php">Task manager</a></li>
+                                    <li><a href="users.php">CRUD user manager</a></li>
+                                    <li><a href="search.php">Search products</a></li>
+                                    <li><a href="login.php">Login dummy</a></li>
                                     <li><a href="html.php">Exercises in HTML y Vanilla Javascript</a></li>
+                                    <li><a href="css.php">Exercises in CSS Responsive</a></li>
                                 </ul>
                             </div>
 
