@@ -60,6 +60,20 @@ body {
 }
 
 /*
+    Theme styles
+    ========================================================================== */
+
+.light {
+    color: var(--dark);
+    background-color: var(--light);
+}
+
+.dark {
+    color: var(--light);
+    background-color: var(--dark);
+}
+
+/*
     Typography
     ========================================================================== */
 
@@ -270,6 +284,7 @@ small {
     border-radius: var(--rounded);
     border: 1px solid var(--grey-light);
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+    color: var(--dark);
     display: flex;
     flex-direction: column;
     .card__header,

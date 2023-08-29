@@ -8,6 +8,7 @@ use App\WebPage;
 
 $page = WebPage::init("CSS Exercises", "CSS Practice Exercises App - Home Page");
 
+$theme = $_GET['theme'] ?? 'light';
 ?>
 <!doctype html>
 <html lang="en">
@@ -23,11 +24,15 @@ $page = WebPage::init("CSS Exercises", "CSS Practice Exercises App - Home Page")
     <link rel="stylesheet" href="assets/css/main.min.css">
 </head>
 
-<body>
+<body class="<?php echo $theme ?>">
     <main>
         <section class="section container header">
             <h1 class="title"><?php echo $page->getTitle() ?></h1>
             <p class="subtitle"><?php echo $page->getDescription() ?></p>
+            <p class="lead">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. <br>
+                <a href="?theme=light">Light theme</a>&nbsp;|&nbsp;<a href="?theme=dark">Dark theme</a>
+            </p>
         </section>
 
         <section class="section container">
