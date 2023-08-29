@@ -113,12 +113,61 @@ p {
     font-weight: 400;
 }
 
-a {
+a, .link {
     text-decoration: none;
     color: var(--link);
     transition: all 0.3s ease-in-out;
     &:hover {
         color: var(--black-dark);
+    }
+}
+
+.link--primary {
+    color: var(--primary);
+    &:hover {
+        color: var(--primary-dark);
+    }
+}
+
+.link--secondary {
+    color: var(--secondary);
+    &:hover {
+        color: var(--secondary-dark);
+    }
+}
+
+.link--tertiary {
+    color: var(--tertiary);
+    &:hover {
+        color: var(--tertiary-dark);
+    }
+}
+
+.link--success {
+    color: var(--success);
+    &:hover {
+        color: var(--success-dark);
+    }
+}
+
+.link--warning {
+    color: var(--warning);
+    &:hover {
+        color: var(--warning-dark);
+    }
+}
+
+.link--danger {
+    color: var(--danger);
+    &:hover {
+        color: var(--danger-dark);
+    }
+}
+
+.link--info {
+    color: var(--info);
+    &:hover {
+        color: var(--info-dark);
     }
 }
 
@@ -143,6 +192,23 @@ em {
 
 small {
     font-size: 1.4rem;
+}
+
+.dark {
+    strong, em, small, mark, del, ins, sub, sup, abbr, q, cite, code, kbd samp, var {
+        color: var(--black-dark);
+        background-color: var(--black-light);
+    }
+    mark {
+        background-color: var(--warning-light);
+    }
+    a {
+        text-decoration-color: var(--light);
+        &:hover {
+            color: var(--light);
+            text-decoration: underline;
+        }
+    }
 }
 
 /*
@@ -280,7 +346,7 @@ small {
 }
 
 .card {
-    background-color: #fff;
+    background-color: var(--white);
     border-radius: var(--rounded);
     border: 1px solid var(--grey-light);
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);

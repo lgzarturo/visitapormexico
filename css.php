@@ -322,6 +322,14 @@ $theme = $_GET['theme'] ?? 'light';
                 <a href="#" class="link--warning">This is a warning link.</a>
             </p>
 
+            <p>
+                <a href="#" class="link--danger">This is a danger link.</a>
+            </p>
+
+            <p>
+                <a href="#" class="link--info">This is a info link.</a>
+            </p>
+
             <ul>
                 <li>This is a list item.</li>
                 <li>This is a list item.</li>

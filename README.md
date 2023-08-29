@@ -64,7 +64,10 @@ Busco mejorar mis técnicas de SEO orgánico y aprender a usar las redes sociale
 
 - `assets`: Contiene los archivos de Sass y JavaScript, que se compilan con Prepros.
   - `css`: Contiene los archivos de CSS.
+    - `main.scss`: Contiene el archivo principal de Sass, este archivo se compila con Prepros y genera el archivo `main.min.css`. Es un `custom framework` de CSS con temas y enfocado a `mobile first` con media query responsive para los demás tipos de dispositivos.
+    - `normalize.css`: Contiene el archivo de Normalize CSS, para normalizar los estilos de los navegadores.
   - `js`: Contiene los archivos de JavaScript.
+    - `main.js`: Contiene el archivo principal de JavaScript, este archivo se compila con Prepros y genera el archivo `main.min.js`. Contiene pequeños ejemplos de JavaScript.
   - `img`: Contiene las imágenes, de momento solo hay un favicon.
 - `db`: Contiene la base de datos para MySQL.
   - `database.sql`: Contiene la base de datos para el ejemplo de `users.php` y `search.php`.
@@ -75,10 +78,10 @@ Busco mejorar mis técnicas de SEO orgánico y aprender a usar las redes sociale
   - `Models`: Contiene las clases para el modelo de la aplicación.
 - `vendor`: Contiene las dependencias de Composer.
 
-> Importante:
->
-> - Estoy usando PSR-4 para el `autoloading` de clases, por eso todas las clases están en la carpeta `src`.
-> - La carpeta `src` será la carpeta raíz del proyecto.
-> - Mi idea es trabajar con namespaces para organizar las clases y usar el `autoloading` de Composer.
-> - También tengo pensado ir evolucionando el proyecto usando buenas prácticas de programación y orientación a objetos.
-> - No se si sea correcto pero estoy cargando el archivo `autoload.php` de Composer con un `require_once` en cada archivo de la carpeta `src`.
+## Importante
+
+- Estoy usando PSR-4 para el `autoloading` de clases, por eso todas las clases están en la carpeta `src`.
+- La carpeta `src` será la carpeta raíz del proyecto.
+- Mi idea es trabajar con namespaces para organizar las clases y usar el `autoloading` de Composer.
+- También tengo pensado ir evolucionando el proyecto usando buenas prácticas de programación y orientación a objetos.
+- No se si sea correcto pero estoy cargando el archivo `autoload.php` de Composer con un `require_once` en cada archivo de la carpeta `src`.
