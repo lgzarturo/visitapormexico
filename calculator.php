@@ -7,7 +7,7 @@ require_once 'vendor/autoload.php';
 use App\Functions;
 use App\WebPage;
 
-$page = WebPage::init("Calculator", "Simple Calculator App");
+$page = WebPage::init('Calculator', 'Simple Calculator App');
 
 $notification = isset($_SESSION['notification']) ? $_SESSION['notification'] : null;
 

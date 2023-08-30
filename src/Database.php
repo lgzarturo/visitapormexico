@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use Exception;
 use PDO;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
@@ -24,6 +25,7 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
  * @property PDO $connection The database connection.
  *
  * @package App
+ *
  */
 class Database
 {
@@ -60,20 +62,22 @@ class Database
     /**
      * Establishes a connection to the database and returns a PDO object.
      *
-     * @return PDO The PDO object representing the database connection.
+     * @throws Exception If there is an error connecting to the database.
+     *
+     * @return PDO The PDO object representing the connection to the database.
+     *
      */
     public static function connect(): PDO
     {
         try {
             $self = new self('root', 'ATJ-pfGU%2rT_A*Erd', 'user_products', '127.0.0.1', 3307);
             $self->connection = new PDO($self->dsn, $self->user, $self->password);
-            $self->connection->exec(sprintf("SET NAMES '%s'", $self->charset));
+            $self->connection->exec("SET NAMES '{$self->charset}'");
             $self->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $self->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             return $self->connection;
         } catch (\PDOException $e) {
-            echo $e->getMessage();
-            exit;
+            throw new Exception(sprintf('Error connecting to the database: %s', $e->getMessage()));
         }
     }
 }

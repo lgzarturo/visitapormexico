@@ -8,7 +8,7 @@ use App\Crud\Users\Login;
 use App\Functions;
 use App\WebPage;
 
-$page = WebPage::init("Login", "User Login Page");
+$page = WebPage::init('Login', 'User Login Page');
 
 Login::logoutSession();
 

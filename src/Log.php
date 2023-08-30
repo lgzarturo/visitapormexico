@@ -17,6 +17,7 @@ use Monolog\Formatter\LineFormatter;
  * The Log class provides a simple interface for logging messages to a file.
  *
  * @package App
+ *
  */
 class Log
 {
@@ -24,6 +25,7 @@ class Log
      * The path to the log file.
      *
      * @var string
+     *
      */
     private string $logFile;
 
@@ -31,6 +33,7 @@ class Log
      * The logger instance.
      *
      * @var Logger
+     *
      */
     private Logger $log;
 
@@ -46,12 +49,13 @@ class Log
      *
      * @param Config $config The configuration object.
      * @param string $name The name of the logger.
+     *
      */
     private function __construct(Config $config, string $name)
     {
         $this->logFile = $config->getLogFile();
         $this->level = $config->getLogLevel();
-        $dateFormat = "Y n j, g:i a";
+        $dateFormat = 'Y n j, g:i a';
         $output = "%level_name% \t [%datetime%] \t %message% - %context% - %extra%\n";
         $formatter = new LineFormatter($output, $dateFormat);
         $this->log = new Logger($name);
@@ -64,7 +68,9 @@ class Log
      * Logs an error message.
      *
      * @param string $message The message to log.
+     *
      * @return void
+     *
      */
     final public function error(string $message): void
     {
@@ -75,7 +81,9 @@ class Log
      * Logs an info message.
      *
      * @param string $message The message to log.
+     *
      * @return void
+     *
      */
     final public function info(string $message): void
     {
@@ -86,7 +94,9 @@ class Log
      * Logs a debug message.
      *
      * @param string $message The message to log.
+     *
      * @return void
+     *
      */
     final public function debug(string $message): void
     {
@@ -98,7 +108,9 @@ class Log
      *
      * @param Config $config The configuration object.
      * @param string $name The name of the logger.
+     *
      * @return self
+     *
      */
     final public static function init(Config $config, string $name): self
     {

@@ -13,9 +13,9 @@ require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 /**
  * Create class
  *
- * @package App\Crud\Users
- *
  * This class contains a static method `execute` that creates a new user in the database.
+ *
+ * @package App\Crud\Users
  *
  */
 class Create
@@ -26,10 +26,11 @@ class Create
      * @param array $data An associative array containing the user's name, email and status.
      * Commonly the data comes from the $_POST super global.
      *
-     * @throws \Exception If any of the required fields are missing or invalid.
      * @throws \PDOException If there is an error with the database connection or query.
+     * @throws \Exception If any of the required fields are missing or invalid.
      *
      * @return void
+     *
      */
     public static function execute(array $data)
     {
@@ -71,13 +72,13 @@ class Create
             $page->getFramework()->info(sprintf('User %s created successfully', $id));
             Functions::createNotification('success', sprintf('User %s created successfully', $id));
             Functions::redirect('/users');
+        } catch (\PDOException $e) {
+            $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
+            Functions::createNotification('error', 'Error in query to the database');
+            Functions::redirect('/users', ['error' => true]);
         } catch (\Exception $e) {
             $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
             Functions::createNotification('error', $e->getMessage());
-            Functions::redirect('/users', ['error' => true]);
-        } catch (\PDOException $e) {
-            $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
-            Functions::createNotification('error', "Server error");
             Functions::redirect('/users', ['error' => true]);
         }
     }

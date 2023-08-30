@@ -12,6 +12,7 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
  * The Framework class represents a basic framework for building PHP applications.
  *
  * @package App
+ *
  */
 class Framework
 {
@@ -19,6 +20,7 @@ class Framework
      * The name of the framework.
      *
      * @var string
+     *
      */
     private string $name;
 
@@ -26,6 +28,7 @@ class Framework
      * The version of the framework.
      *
      * @var string
+     *
      */
     private string $version;
 
@@ -33,6 +36,7 @@ class Framework
      * The author of the framework.
      *
      * @var string
+     *
      */
     private string $author;
 
@@ -40,6 +44,7 @@ class Framework
      * The configuration object for the framework.
      *
      * @var Config
+     *
      */
     private Config $config;
 
@@ -47,6 +52,7 @@ class Framework
      * The log object for the framework.
      *
      * @var Log
+     *
      */
     private Log $log;
 
@@ -56,6 +62,7 @@ class Framework
      * @param string $name The name of the framework.
      * @param string $version The version of the framework.
      * @param string $author The author of the framework.
+     *
      */
     private function __construct(string $name, string $version, string $author)
     {
@@ -68,6 +75,7 @@ class Framework
      * Initializes the configuration and log objects for the framework.
      *
      * @return void
+     *
      */
     private function start(): void
     {
@@ -82,7 +90,9 @@ class Framework
      * @param string $name The name of the framework.
      * @param string $version The version of the framework.
      * @param string $author The author of the framework.
+     *
      * @return self
+     *
      */
     final public static function init(string $name, string $version, string $author): self
     {
@@ -95,7 +105,9 @@ class Framework
      * Logs an error message to the log object.
      *
      * @param string $message The error message to log.
+     *
      * @return void
+     *
      */
     final public function error(string $message): void
     {
@@ -106,7 +118,9 @@ class Framework
      * Logs an info message to the log object.
      *
      * @param string $message The info message to log.
+     *
      * @return void
+     *
      */
     final public function info(string $message): void
     {
@@ -117,7 +131,9 @@ class Framework
      * Logs a debug message to the log object.
      *
      * @param string $message The debug message to log.
+     *
      * @return void
+     *
      */
     final public function debug(string $message): void
     {
@@ -128,6 +144,7 @@ class Framework
      * Returns the version of the framework.
      *
      * @return string
+     *
      */
     final public function getVersion(): string
     {
@@ -138,6 +155,7 @@ class Framework
      * Returns the copyright notice for the framework.
      *
      * @return string
+     *
      */
     final public function getCopyRight(): string
     {

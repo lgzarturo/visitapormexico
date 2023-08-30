@@ -8,7 +8,7 @@ use App\Functions;
 use App\Models\{Amenity, Gallery, Hotel, Photo, Room, User};
 use App\WebPage;
 
-$page = WebPage::init("Exercises", "Php Exercises App - Home Page");
+$page = WebPage::init('Exercises', 'Php Exercises App - Home Page');
 
 ?>
 <!doctype html>

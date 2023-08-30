@@ -25,14 +25,15 @@ class Login
      * @param array $data An array containing the user's login credentials.
      * Commonly the data comes from the $_POST super global.
      *
+     * @throws \PDOException If there is an error with the database connection.
+     * @throws \Exception If the user is not found or the credentials are invalid.
+     *
      * @return void
      *
-     * @throws \Exception If the user is not found or the credentials are invalid.
-     * @throws \PDOException If there is an error with the database connection.
      */
     public static function authentication(array $data): void
     {
-        $page = WebPage::init("Login", "User Login Page");
+        $page = WebPage::init('Login', 'User Login Page');
         array_map('trim', $data);
         $username = htmlspecialchars($data['username']);
         $password = $data['password'];
@@ -70,25 +71,27 @@ class Login
             $_SESSION['current_user'] = $currentUser;
             Functions::createNotification('success', sprintf('User %s logged in successfully', $currentUser['username']));
             Functions::redirect('/index');
-        } catch (\Exception $e) {
-            Functions::createNotification('error', $e->getMessage());
         } catch (\PDOException $e) {
-            $page->getFramework()->error(sprintf("Error: %s", $e->getMessage()));
-            Functions::createNotification('error', 'Server error');
+            $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
+            Functions::createNotification('error', 'Error in query to the database');
+        } catch (\Exception $e) {
+            $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
+            Functions::createNotification('error', $e->getMessage());
         }
     }
 
     /**
      * Retrieves the current user from the session and redirects to the index page.
      *
+     * @throws \PDOException If a database error occurs.*
+     * @throws \Exception If an error occurs while retrieving the user.
+     *
      * @return void
      *
-     * @throws \Exception If an error occurs while retrieving the user.
-     * @throws \PDOException If a database error occurs.
      */
     public static function getCurrentUser(): void
     {
-        $page = WebPage::init("Get Current User", "/users/current");
+        $page = WebPage::init('Get Current User', '/users/current');
         try {
             $user = [];
             if (isset($_SESSION['current_user'])) {
@@ -97,11 +100,11 @@ class Login
                 Functions::createNotification('success', sprintf('User %s loaded successfully', $user['username']));
                 Functions::redirect('/index');
             }
+        } catch (\PDOException $e) {
+            $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
+            Functions::createNotification('error', 'Server error');
         } catch (\Exception $e) {
             Functions::createNotification('error', $e->getMessage());
-        } catch (\PDOException $e) {
-            $page->getFramework()->error(sprintf("Error: %s", $e->getMessage()));
-            Functions::createNotification('error', 'Server error');
         }
     }
 
@@ -113,7 +116,7 @@ class Login
      */
     public static function logoutSession(): void
     {
-        $page = WebPage::init("Logout", "/users/logout");
+        $page = WebPage::init('Logout', '/users/logout');
         $actionLogout = $_GET['action'] ?? '';
         if ($actionLogout === 'logout' && isset($_SESSION['current_user'])) {
             unset($_SESSION['current_user']);

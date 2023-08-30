@@ -92,6 +92,7 @@ class SecurePassword
      * Generates a secure password with a combination of special characters, numbers, lower and upper case letters.
      *
      * @return string The generated password.
+     *
      */
     private function generatePassword(): string
     {
@@ -134,7 +135,7 @@ class SecurePassword
 // In the following snippet, we are using the SecurePassword class to generate a random password.
 
 try {
-    $page = WebPage::init("Random Password", "Generate Random Password");
+    $page = WebPage::init('Random Password', 'Generate Random Password');
     if ($_POST) {
         array_map('trim', $_POST);
         $size = (int) $_POST['size'] ?? 8;

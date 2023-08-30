@@ -8,7 +8,7 @@ use App\Crud\Products\Search;
 use App\Functions;
 use App\WebPage;
 
-$page = WebPage::init("Search", "Products Search Page");
+$page = WebPage::init('Search', 'Products Search Page');
 
 $searchQuery = isset($_GET['term']) ? htmlspecialchars($_GET['term']) : null;
 

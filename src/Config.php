@@ -24,6 +24,7 @@ define("App\BASE_PATH", dirname(__DIR__));
  * It also provides methods to get the log file and log level, and to initialize the configuration.
  *
  * @package App
+ *
  */
 class Config
 {
@@ -56,6 +57,7 @@ class Config
      * Sets the configuration for error reporting and logging.
      *
      * @return void
+     *
      */
     final public function config(): void
     {
@@ -76,6 +78,7 @@ class Config
      * Initializes the Config class and calls the config method.
      *
      * @return self Returns an instance of the Config class.
+     *
      */
     final public static function init(): self
     {

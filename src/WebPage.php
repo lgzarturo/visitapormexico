@@ -12,6 +12,7 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
  * Represents a web page, is the base class for all web pages.
  *
  * @package App
+ *
  */
 class WebPage
 {
@@ -19,6 +20,7 @@ class WebPage
      * The framework instance used by the web page.
      *
      * @var Framework
+     *
      */
     private Framework $framework;
 
@@ -26,6 +28,7 @@ class WebPage
      * The title of the web page.
      *
      * @var string
+     *
      */
     private string $title;
 
@@ -33,6 +36,7 @@ class WebPage
      * The description of the web page.
      *
      * @var string
+     *
      */
     private string $description;
 
@@ -41,6 +45,7 @@ class WebPage
      *
      * @param string $title The title of the web page.
      * @param string $description The description of the web page.
+     *
      */
     private function __construct(string $title, string $description)
     {
@@ -60,7 +65,9 @@ class WebPage
      *
      * @param string $title The title of the web page.
      * @param string $description The description of the web page.
+     *
      * @return self
+     *
      */
     final public static function init(string $title, string $description): self
     {
@@ -71,6 +78,7 @@ class WebPage
      * Gets the framework instance used by the web page.
      *
      * @return Framework
+     *
      */
     final public function getFramework(): Framework
     {
@@ -81,6 +89,7 @@ class WebPage
      * Gets the title of the web page.
      *
      * @return string
+     *
      */
     final public function getTitle(): string
     {
@@ -91,6 +100,7 @@ class WebPage
      * Gets the description of the web page.
      *
      * @return string
+     *
      */
     final public function getDescription(): string
     {

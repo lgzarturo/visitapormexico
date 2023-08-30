@@ -16,6 +16,7 @@ require_once dirname(__DIR__) . '/../../vendor/autoload.php';
  * This class contains a static method setStatus that updates the status of a user in the database.
  *
  * @package App\Crud\Users
+ *
  */
 class UpdateStatus
 {
@@ -28,6 +29,7 @@ class UpdateStatus
      * @throws \Exception If the user ID or status is invalid, or if the user is not found in the database.
      *
      * @return void
+     *
      */
     public static function setStatus(array $data)
     {
@@ -66,6 +68,10 @@ class UpdateStatus
             $page->getFramework()->info(sprintf('User %s updated successfully', $id));
             Functions::createNotification('success', sprintf('User %s updated successfully', $id));
             Functions::redirect('/users');
+        } catch (\PDOException $e) {
+            $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
+            Functions::createNotification('error', 'Error in query to the database');
+            Functions::redirect('/users', ['error' => true]);
         } catch (\Exception $e) {
             $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
             Functions::createNotification('error', $e->getMessage());

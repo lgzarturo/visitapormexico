@@ -26,9 +26,10 @@ class Update
      * @param array $data An array containing user data to be updated.
      * Commonly the data comes from the $_POST super global.
      *
+     * @throws \Exception If user data is invalid or user is not found.
+     *
      * @return void
      *
-     * @throws \Exception If user data is invalid or user is not found.
      */
     public static function execute(array $data)
     {
@@ -83,6 +84,10 @@ class Update
             $page->getFramework()->info(sprintf('User %s updated successfully', $id));
             Functions::createNotification('success', sprintf('User %s updated successfully', $id));
             Functions::redirect('/users');
+        } catch (\PDOException $e) {
+            $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
+            Functions::createNotification('error', 'Error in query to the database');
+            Functions::redirect('/users', ['error' => true]);
         } catch (\Exception $e) {
             $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
             Functions::createNotification('error', $e->getMessage());

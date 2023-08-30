@@ -28,6 +28,7 @@ class Task
      * Task constructor.
      *
      * @param string $content represents the content of the task.
+     *
      */
     private function __construct(string $content)
     {
@@ -75,7 +76,9 @@ class Task
  *
  * @param int $id The ID of the Task object to find.
  * @param array $array The array to search in.
+ *
  * @return Task|null The Task object with the given ID, or null if not found.
+ *
  */
 function findObjectById($id, $array): Task|null
 {
@@ -94,7 +97,9 @@ function findObjectById($id, $array): Task|null
  *
  * @param int $id The id of the element to remove.
  * @param array $array The array to remove the element from.
+ *
  * @return array The new array without the element with the given id.
+ *
  */
 function getNewArrayRemoveElementById($id, $array): array
 {
@@ -110,7 +115,7 @@ function getNewArrayRemoveElementById($id, $array): array
 // In the following snippet, we are using the Task class to create a task manager.
 
 try {
-    $page = WebPage::init("Create Task", "Add Task");
+    $page = WebPage::init('Create Task', 'Add Task');
 
     if (isset($_GET['action']) && isset($_GET['id'])) {
         array_map('trim', $_GET);

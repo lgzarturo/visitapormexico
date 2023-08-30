@@ -26,14 +26,15 @@ class Read
      * @param array $data An array containing the user ID.
      * Commonly the data comes from the $_GET super global.
      *
-     * @return void
-     *
      * @throws \Exception If the user ID is invalid or the user is not found.
      * @throws \PDOException If there is an error executing the SQL statement.
+     *
+     * @return void
+     *
      */
     public static function getUser(array $data): void
     {
-        $page = WebPage::init("Read User", "/users/read");
+        $page = WebPage::init('Read User', '/users/read');
         try {
             array_map('trim', $data);
             if (!isset($data['id'])) {
@@ -57,12 +58,13 @@ class Read
             $_SESSION['user'] = $user;
             Functions::createNotification('success', sprintf('User %s loaded successfully', $id));
             Functions::redirect('/users');
-        } catch (\Exception $e) {
-            Functions::createNotification('error', $e->getMessage());
-            Functions::redirect('/users', ['error' => true]);
         } catch (\PDOException $e) {
-            $page->getFramework()->error(sprintf("Error: %s", $e->getMessage()));
-            Functions::createNotification('error', 'Server error');
+            $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
+            Functions::createNotification('error', 'Error in query to the database');
+            Functions::redirect('/users', ['error' => true]);
+        } catch (\Exception $e) {
+            $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
+            Functions::createNotification('error', $e->getMessage());
             Functions::redirect('/users', ['error' => true]);
         }
     }

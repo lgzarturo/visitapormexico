@@ -60,7 +60,9 @@ class ProcessImage
      * @param float $width The width of the image.
      * @param float $height The height of the image.
      * @param string $filter The filter to apply to the image.
+     *
      * @return ProcessImage A new ProcessImage instance.
+     *
      */
     public static function create(float $width, float $height, string $filter = ''): ProcessImage
     {
@@ -72,7 +74,9 @@ class ProcessImage
      *
      * @param float $size The size of the square image.
      * @param string $filter The filter to apply to the image.
+     *
      * @return ProcessImage The new ProcessImage instance.
+     *
      */
     public static function createSquareImage(float $size, string $filter = ''): ProcessImage
     {
@@ -83,7 +87,7 @@ class ProcessImage
 // In the following snippet, we are using the ProcessImage class to generate a random image.
 
 try {
-    $page = WebPage::init("VisitaPorMexico", "Random Image App");
+    $page = WebPage::init('VisitaPorMexico', 'Random Image App');
 
     if ($_POST) {
         array_map('trim', $_POST);

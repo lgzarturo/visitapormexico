@@ -63,7 +63,7 @@ class RandomNumber
 // In the following snippet, we are using the RandomNumber class to generate a random number.
 
 try {
-    $page = WebPage::init("Random Number", "Generate Random Number");
+    $page = WebPage::init('Random Number', 'Generate Random Number');
 
     if ($_POST) {
         $randomNumber = RandomNumber::create();

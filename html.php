@@ -7,7 +7,7 @@ require_once 'vendor/autoload.php';
 use App\Functions;
 use App\WebPage;
 
-$page = WebPage::init("Exercises", "HTML y Javascript Exercises App - Home Page");
+$page = WebPage::init('Exercises', 'HTML y Javascript Exercises App - Home Page');
 
 ?>
 <!doctype html>
@@ -100,7 +100,7 @@ $page = WebPage::init("Exercises", "HTML y Javascript Exercises App - Home Page"
                         streamCamera.srcObject = stream;
                     })
                     .catch(function(error) {
-                        console.log("Something went wrong accessing the camera", error);
+                        console.log('Something went wrong accessing the camera', error);
                     });
             });
             closeCamera.addEventListener('click', function() {

@@ -21,21 +21,25 @@ class Operation
 {
     /**
      * @var string The operation symbol (+, -, *, /)
+     *
      */
     private string $operation;
 
     /**
      * @var float The first number of the operation
+     *
      */
     private float $firstNumber;
 
     /**
      * @var float The second number of the operation
+     *
      */
     private float $secondNumber;
 
     /**
      * @var float The result of the operation
+     *
      */
     private float $result;
 
@@ -45,6 +49,7 @@ class Operation
      * @param float $firstNumber The first number of the operation
      * @param float $secondNumber The second number of the operation
      * @param string $operation The operation symbol (+, -, *, /)
+     *
      */
     private function __construct(float $firstNumber, float $secondNumber, string $operation)
     {
@@ -57,8 +62,10 @@ class Operation
     /**
      * Calculates the result of the operation.
      *
-     * @return float The result of the operation
      * @throws \InvalidArgumentException If the operation symbol is invalid
+     *
+     * @return float The result of the operation
+     *
      */
     public function calculate(): float
     {
@@ -119,7 +126,9 @@ class Operation
      * @param float $firstNumber The first number of the operation
      * @param float $secondNumber The second number of the operation
      * @param string $operation The operation symbol (+, -, *, /)
+     *
      * @return self The new Operation instance
+     *
      */
     public static function create(float $firstNumber, float $secondNumber, string $operation): self
     {
@@ -130,7 +139,7 @@ class Operation
 // In the following snippet, we are using the Operation class to perform a simple calculation.
 
 try {
-    $page = WebPage::init("VisitaPorMexico", "Random Image App");
+    $page = WebPage::init('Operations', '/calculator');
 
     if ($_POST) {
         array_map('trim', $_POST);

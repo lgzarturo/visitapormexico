@@ -8,7 +8,7 @@ use App\Crud\Users\ListItems;
 use App\Functions;
 use App\WebPage;
 
-$page = WebPage::init("Exercises", "Php Exercises App - Home Page");
+$page = WebPage::init('Exercises', 'Php Exercises App - Home Page');
 
 $users = ListItems::getAll();
 

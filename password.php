@@ -7,7 +7,7 @@ require_once 'vendor/autoload.php';
 use App\Functions;
 use App\WebPage;
 
-$page = WebPage::init("Random", "Generate Random Password and Number");
+$page = WebPage::init('Random', 'Generate Random Password and Number');
 
 $notification = isset($_SESSION['notification']) ? $_SESSION['notification'] : null;
 

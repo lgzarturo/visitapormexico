@@ -7,7 +7,7 @@ require_once 'vendor/autoload.php';
 use App\Functions;
 use App\WebPage;
 
-$page = WebPage::init("Random Image", "Generate a random image with the Picsum API");
+$page = WebPage::init('Random Image', 'Generate a random image with the Picsum API');
 
 $notification = isset($_SESSION['notification']) ? $_SESSION['notification'] : null;
 

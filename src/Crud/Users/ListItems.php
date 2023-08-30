@@ -22,8 +22,11 @@ class ListItems
     /**
      * Returns an array of all users in the database, ordered by id in descending order.
      *
+     * @throws \PDOException If there is an error with the database connection or query.
+     * @throws Exception If there is an error in the query to the database or in the database connection.
+     *
      * @return array An array of all users in the database.
-     * @throws Exception If there is an error executing the SQL statement.
+     *
      */
     public static function getAll(): array
     {
@@ -36,7 +39,9 @@ class ListItems
             $connection = null;
             return $users;
         } catch (\PDOException $e) {
-            throw new Exception($e->getMessage());
+            throw new Exception(sprintf('Error in query to the database: %s', $e->getMessage()));
+        } catch (\Exception $e) {
+            throw new Exception(sprintf('Error in the database connection: %s', $e->getMessage()));
         }
     }
 }

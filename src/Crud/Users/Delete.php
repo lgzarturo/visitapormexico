@@ -26,9 +26,11 @@ class Delete
      * @param array $data An array containing the user's id.
      * Commonly the data comes from the $_GET super global.
      *
+     * @throws \PDOException If there is an error with the database connection or query.
      * @throws \Exception If the user id is invalid or not found.
      *
      * @return void
+     *
      */
     public static function execute(array $data)
     {
@@ -59,6 +61,10 @@ class Delete
             $page->getFramework()->info(sprintf('User %s deleted successfully', $id));
             Functions::createNotification('success', sprintf('User %s deleted successfully', $id));
             Functions::redirect('/users');
+        } catch (\PDOException $e) {
+            $page->getFramework()->error(sprintf('Error in query to the database: %s', $e->getMessage()));
+            Functions::createNotification('error', 'Error in query to the database');
+            Functions::redirect('/users', ['error' => true]);
         } catch (\Exception $e) {
             $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
             Functions::createNotification('error', $e->getMessage());

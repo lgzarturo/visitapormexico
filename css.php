@@ -6,7 +6,7 @@ require_once 'vendor/autoload.php';
 
 use App\WebPage;
 
-$page = WebPage::init("CSS Exercises", "CSS Practice Exercises App - Home Page");
+$page = WebPage::init('CSS Exercises', 'CSS Practice Exercises App - Home Page');
 
 $theme = $_GET['theme'] ?? 'light';
 ?>
