@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Crud\Users;
 
-use App\Database;
-use App\Functions;
-use App\WebPage;
+use App\Core\{Application, Database};
+use App\Helpers\Functions;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
@@ -34,7 +33,7 @@ class Create
      */
     public static function execute(array $data)
     {
-        $page = WebPage::init('Create User', '/users/create');
+        $page = Application::init('Create User', '/users/create');
         try {
             if (empty($data)) {
                 throw new \Exception('All fields are required');

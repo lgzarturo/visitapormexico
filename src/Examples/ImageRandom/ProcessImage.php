@@ -6,8 +6,8 @@ namespace App\Examples\ImageRandom;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
-use App\Functions;
-use App\WebPage;
+use App\Core\Application;
+use App\Helpers\Functions;
 
 /**
  * ProcessImage class.
@@ -87,7 +87,7 @@ class ProcessImage
 // In the following snippet, we are using the ProcessImage class to generate a random image.
 
 try {
-    $page = WebPage::init('VisitaPorMexico', 'Random Image App');
+    $page = Application::init('VisitaPorMexico', 'Random Image App');
 
     if ($_POST) {
         array_map('trim', $_POST);

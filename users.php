@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
+use App\Core\Application;
 use App\Crud\Users\ListItems;
-use App\Functions;
-use App\WebPage;
+use App\Helpers\Functions;
 
-$page = WebPage::init('Exercises', 'Php Exercises App - Home Page');
+
+$page = Application::init('Exercises', 'Php Exercises App - Home Page');
 
 $users = ListItems::getAll();
 

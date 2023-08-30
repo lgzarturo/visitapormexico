@@ -1,9 +1,9 @@
 // If the jQuery is not working, make sure you have the jQuery library loaded in the head of your document
 $(document).ready(function() {
   // Add dynamic back to home link and logout link
-  if (window.location.pathname !== '/index.php') {
+  if (window.location.pathname !== '/home.php') {
     // TODO: The logout link should be dynamic if the user is logged in or not
-    $('body').prepend('<div class="container"><a href="/index.php">Back to Home</a>&nbsp;<a href="/login.php?action=logout">Logout</a</div>');
+    $('body').prepend('<div class="container"><a href="/home.php">Back to Home</a>&nbsp;<a href="/login.php?action=logout">Logout</a</div>');
   }
   // Slide up notifications after 3 seconds
   //$('.notification').delay(3000).slideUp(300);

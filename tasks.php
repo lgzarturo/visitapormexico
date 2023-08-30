@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
-use App\Functions;
-use App\WebPage;
+use App\Core\Application;
+use App\Helpers\Functions;
 
-$page = WebPage::init('Task', 'Task Manager App');
+$page = Application::init('Task', 'Task Manager App');
 
 $notification = isset($_SESSION['notification']) ? $_SESSION['notification'] : null;
 

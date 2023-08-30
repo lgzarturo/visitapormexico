@@ -6,8 +6,8 @@ namespace App\Examples\Password;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
-use App\Functions;
-use App\WebPage;
+use App\Core\Application;
+use App\Helpers\Functions;
 
 /**
  * SecurePassword class.
@@ -135,7 +135,7 @@ class SecurePassword
 // In the following snippet, we are using the SecurePassword class to generate a random password.
 
 try {
-    $page = WebPage::init('Random Password', 'Generate Random Password');
+    $page = Application::init('Random Password', 'Generate Random Password');
     if ($_POST) {
         array_map('trim', $_POST);
         $size = (int) $_POST['size'] ?? 8;

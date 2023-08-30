@@ -73,9 +73,23 @@ Busco mejorar mis técnicas de SEO orgánico y aprender a usar las redes sociale
   - `database.sql`: Contiene la base de datos para el ejemplo de `users.php` y `search.php`.
 - `logs`: Dentro de esta carpeta se guardan los logs de la aplicación.
 - `src`: Contiene el código fuente de la aplicación.
+  - `Controllers`: Contiene las clases para el manejo de las peticiones HTTP.
+  - `Core`: Contiene las clases principales de la aplicación.
   - `Crud`: Contiene las clases para realizar un CRUD.
   - `Examples`: Contiene los ejemplos de la aplicación.
+  - `Exceptions`: Contiene las clases para las excepciones.
+  - `Helpers`: Contiene las clases para los helpers.
+  - `Hooks`: Contiene las clases para los hooks.
   - `Models`: Contiene las clases para el modelo de la aplicación.
+  - `Routes`: Contiene las clases para las rutas de la aplicación.
+  - `Services`: Contiene las clases para los servicios de la aplicación.
+  - `Templates`: Contiene las clases para las plantillas de la aplicación.
+    - `Includes`: Contiene las clases para los partials de la aplicación.
+    - `Layouts`: Contiene las clases para los layouts de la aplicación.
+    - `Pages`: Contiene las clases para las páginas de la aplicación.
+    - `Views`: Contiene las clases para las vistas de la aplicación.
+    - `Widgets`: Contiene las clases para los widgets de la aplicación.
+  - `Tests`: Contiene las clases para las pruebas unitarias.
 - `vendor`: Contiene las dependencias de Composer.
 
 ## Importante

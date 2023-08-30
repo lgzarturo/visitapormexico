@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Core;
 
-require_once dirname(__DIR__) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../vendor/autoload.php';
 
 /**
  * Framework class.
@@ -74,12 +74,15 @@ class Framework
     /**
      * Initializes the configuration and log objects for the framework.
      *
+     * @param string $timezone The timezone for the application.
+     * @param string $language The language for the application.
+     *
      * @return void
      *
      */
-    private function start(): void
+    private function start(string $timezone, string $language): void
     {
-        $this->config = Config::init();
+        $this->config = Config::init($timezone, $language);
         $this->log = Log::init($this->config, $this->name);
         $this->log->info("{$this->name} {$this->version} by {$this->author}");
     }
@@ -94,10 +97,10 @@ class Framework
      * @return self
      *
      */
-    final public static function init(string $name, string $version, string $author): self
+    final public static function init(string $name, string $version, string $author, string $timezone = 'America/Mexico_City', string $language = 'es'): self
     {
         $self = new self($name, $version, $author);
-        $self->start();
+        $self->start($timezone, $language);
         return $self;
     }
 
@@ -161,5 +164,27 @@ class Framework
     {
         $year = date('Y');
         return "{$this->name} {$year} &copy {$this->version} by {$this->author}";
+    }
+
+    /**
+     * Returns the timezone used by the framework.
+     *
+     * @return string The timezone identifier.
+     *
+     */
+    final public function getTimezone() : string
+    {
+        return $this->config->getTimezone();
+    }
+
+    /**
+     * Returns the language used by the framework.
+     *
+     * @return string The language used by the framework.
+     *
+     */
+    final public function getLanguage() : string
+    {
+        return $this->config->getLanguage();
     }
 }

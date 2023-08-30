@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Crud\Users;
 
-use App\Database;
-use App\Functions;
-use App\WebPage;
+use App\Core\{Application, Database};
+use App\Helpers\Functions;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
@@ -34,7 +33,7 @@ class Read
      */
     public static function getUser(array $data): void
     {
-        $page = WebPage::init('Read User', '/users/read');
+        $page = Application::init('Read User', '/users/read');
         try {
             array_map('trim', $data);
             if (!isset($data['id'])) {

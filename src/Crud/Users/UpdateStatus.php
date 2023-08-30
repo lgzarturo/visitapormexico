@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Crud\Users;
 
-use App\Database;
-use App\Functions;
-use App\WebPage;
+use App\Core\{Application, Database};
+use App\Helpers\Functions;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
@@ -33,7 +32,7 @@ class UpdateStatus
      */
     public static function setStatus(array $data)
     {
-        $page = WebPage::init('Update status User', '/users/update/status');
+        $page = Application::init('Update status User', '/users/update/status');
         try {
             array_map('trim', $data);
             if (!isset($data['id'])) {

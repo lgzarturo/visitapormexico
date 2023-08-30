@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
-use App\Functions;
-use App\WebPage;
+use App\Helpers\Functions;
+use App\Core\Application;
 
-$page = WebPage::init('Exercises', 'HTML y Javascript Exercises App - Home Page');
+$page = Application::init('Exercises', 'HTML y Javascript Exercises App - Home Page');
 
 ?>
 <!doctype html>

@@ -6,8 +6,8 @@ namespace App\Examples\TaskManager;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
-use App\Functions;
-use App\WebPage;
+use App\Core\Application;
+use App\Helpers\Functions;
 use Exception;
 
 /**
@@ -115,7 +115,7 @@ function getNewArrayRemoveElementById($id, $array): array
 // In the following snippet, we are using the Task class to create a task manager.
 
 try {
-    $page = WebPage::init('Create Task', 'Add Task');
+    $page = Application::init('Create Task', 'Add Task');
 
     if (isset($_GET['action']) && isset($_GET['id'])) {
         array_map('trim', $_GET);

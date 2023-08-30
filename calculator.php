@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
-use App\Functions;
-use App\WebPage;
+use App\Helpers\Functions;
+use App\Core\Application;
 
-$page = WebPage::init('Calculator', 'Simple Calculator App');
+$page = Application::init('Calculator', 'Simple Calculator App');
 
 $notification = isset($_SESSION['notification']) ? $_SESSION['notification'] : null;
 

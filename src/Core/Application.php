@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Core;
 
-require_once dirname(__DIR__) . '/vendor/autoload.php';
+require_once dirname(__DIR__) . '/../vendor/autoload.php';
 
 /**
  * Framework class.
@@ -14,7 +14,7 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
  * @package App
  *
  */
-class WebPage
+class Application
 {
     /**
      * The framework instance used by the web page.
@@ -52,9 +52,12 @@ class WebPage
         $this->framework = Framework::init(
             'VisitaPorMexico',
             '1.0.0',
-            'Arturo López'
+            'Arturo López',
+            'America/Cancun',
+            'es',
         );
         $this->framework->info('Webapp started');
+        date_default_timezone_set($this->getFramework()->getTimezone());
         session_start();
         $this->title = $title;
         $this->description = $description;

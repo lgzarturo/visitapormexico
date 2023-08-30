@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Crud\Products;
 
-use App\Database;
-use App\Functions;
-use App\WebPage;
+use App\Core\{Application, Database};
+use App\Helpers\Functions;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
@@ -38,7 +37,7 @@ class Search
     public static function execute(array $data): array
     {
         $results = [];
-        $page = WebPage::init('Search Product', '/products/search');
+        $page = Application::init('Search Product', '/products/search');
         try {
             if (empty($data)) {
                 throw new \Exception('All fields are required');

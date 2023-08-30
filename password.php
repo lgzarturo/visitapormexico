@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
-use App\Functions;
-use App\WebPage;
+use App\Helpers\Functions;
+use App\Core\Application;
 
-$page = WebPage::init('Random', 'Generate Random Password and Number');
+$page = Application::init('Random', 'Generate Random Password and Number');
 
 $notification = isset($_SESSION['notification']) ? $_SESSION['notification'] : null;
 

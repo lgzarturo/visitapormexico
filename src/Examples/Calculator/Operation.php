@@ -6,8 +6,8 @@ namespace App\Examples\Calculator;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
-use App\Functions;
-use App\WebPage;
+use App\Core\Application;
+use App\Helpers\Functions;
 
 /**
  * Operation class.
@@ -139,7 +139,7 @@ class Operation
 // In the following snippet, we are using the Operation class to perform a simple calculation.
 
 try {
-    $page = WebPage::init('Operations', '/calculator');
+    $page = Application::init('Operations', '/calculator');
 
     if ($_POST) {
         array_map('trim', $_POST);

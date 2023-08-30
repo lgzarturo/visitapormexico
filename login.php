@@ -5,10 +5,10 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use App\Crud\Users\Login;
-use App\Functions;
-use App\WebPage;
+use App\Helpers\Functions;
+use App\Core\Application;
 
-$page = WebPage::init('Login', 'User Login Page');
+$page = Application::init('Login', 'User Login Page');
 
 Login::logoutSession();
 

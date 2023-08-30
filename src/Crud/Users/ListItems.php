@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Crud\Users;
 
-use App\Database;
+use App\Core\Database;
 use Exception;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';

@@ -5,10 +5,10 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use App\Crud\Products\Search;
-use App\Functions;
-use App\WebPage;
+use App\Helpers\Functions;
+use App\Core\Application;
 
-$page = WebPage::init('Search', 'Products Search Page');
+$page = Application::init('Search', 'Products Search Page');
 
 $searchQuery = isset($_GET['term']) ? htmlspecialchars($_GET['term']) : null;
 

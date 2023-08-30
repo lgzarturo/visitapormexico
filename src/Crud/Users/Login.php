@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Crud\Users;
 
-use App\Functions;
-use App\WebPage;
+use App\Core\Application;
+use App\Helpers\Functions;
 
 require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
@@ -33,7 +33,7 @@ class Login
      */
     public static function authentication(array $data): void
     {
-        $page = WebPage::init('Login', 'User Login Page');
+        $page = Application::init('Login', 'User Login Page');
         array_map('trim', $data);
         $username = htmlspecialchars($data['username']);
         $password = $data['password'];
@@ -70,7 +70,7 @@ class Login
             ];
             $_SESSION['current_user'] = $currentUser;
             Functions::createNotification('success', sprintf('User %s logged in successfully', $currentUser['username']));
-            Functions::redirect('/index');
+            Functions::redirect('/home');
         } catch (\PDOException $e) {
             $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
             Functions::createNotification('error', 'Error in query to the database');
@@ -91,14 +91,14 @@ class Login
      */
     public static function getCurrentUser(): void
     {
-        $page = WebPage::init('Get Current User', '/users/current');
+        $page = Application::init('Get Current User', '/users/current');
         try {
             $user = [];
             if (isset($_SESSION['current_user'])) {
                 $user = $_SESSION['current_user'];
                 $_SESSION['current_user'] = $user;
                 Functions::createNotification('success', sprintf('User %s loaded successfully', $user['username']));
-                Functions::redirect('/index');
+                Functions::redirect('/home');
             }
         } catch (\PDOException $e) {
             $page->getFramework()->error(sprintf('Error: %s', $e->getMessage()));
@@ -116,13 +116,13 @@ class Login
      */
     public static function logoutSession(): void
     {
-        $page = WebPage::init('Logout', '/users/logout');
+        $page = Application::init('Logout', '/users/logout');
         $actionLogout = $_GET['action'] ?? '';
         if ($actionLogout === 'logout' && isset($_SESSION['current_user'])) {
             unset($_SESSION['current_user']);
             Functions::createNotification('success', 'User logged out successfully');
             $page->getFramework()->info('User logged out successfully');
-            Functions::redirect('/login');
+            Functions::redirect('/home');
         }
     }
 }
