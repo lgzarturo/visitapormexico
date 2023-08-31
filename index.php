@@ -2,5 +2,8 @@
 
 declare(strict_types=1);
 
-require_once 'vendor/autoload.php';
+require_once getcwd() . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
+use App\Core\Application;
+
+Application::init('Index', 'Web application');

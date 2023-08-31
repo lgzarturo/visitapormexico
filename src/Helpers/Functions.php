@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Helpers;
 
-require_once dirname(__DIR__) . '/../vendor/autoload.php';
-
 /**
  * Functions class.
  *

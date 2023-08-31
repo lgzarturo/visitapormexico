@@ -141,7 +141,6 @@ try {
                 break;
             default:
                 throw new Exception('This operation ' . $action . ' is unsupported');
-                break;
         }
 
         Functions::createNotification('success', $message);

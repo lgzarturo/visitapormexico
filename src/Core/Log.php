@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App\Core;
 
-require_once dirname(__DIR__) . '/../vendor/autoload.php';
-
+use Monolog\Formatter\LineFormatter;
+use Monolog\Handler\StreamHandler;
 use Monolog\Level;
 use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-use Monolog\Formatter\LineFormatter;
 
 /**
  * Log class.

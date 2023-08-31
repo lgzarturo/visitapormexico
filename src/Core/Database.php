@@ -7,8 +7,6 @@ namespace App\Core;
 use Exception;
 use PDO;
 
-require_once dirname(__DIR__) . '/../vendor/autoload.php';
-
 /**
  * Database class.
  *

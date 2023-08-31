@@ -138,9 +138,8 @@ class Operation
 
 // In the following snippet, we are using the Operation class to perform a simple calculation.
 
+$app = Application::init('Operations', '/calculator');
 try {
-    $page = Application::init('Operations', '/calculator');
-
     if ($_POST) {
         array_map('trim', $_POST);
         $firstNumber = (float) $_POST['firstNumber'];
@@ -173,7 +172,7 @@ try {
     }
 } catch (\Exception $e) {
     $error = $e->getMessage();
-    $page->getFramework()->error($error);
+    $app->getFramework()->error($error);
     Functions::createNotification('error', $error);
     Functions::redirect('/calculator', ['error' => true]);
 }

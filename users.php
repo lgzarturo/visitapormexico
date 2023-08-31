@@ -9,7 +9,7 @@ use App\Crud\Users\ListItems;
 use App\Helpers\Functions;
 
 
-$page = Application::init('Exercises', 'Php Exercises App - Home Page');
+$app = Application::init('Exercises', 'Php Exercises App - Home Page');
 
 $users = ListItems::getAll();
 
@@ -24,8 +24,8 @@ $userEdit = isset($_SESSION['user']) ? $_SESSION['user'] : null;
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $page->getTitle() ?></title>
-    <meta name="description" content="<?php echo $page->getDescription() ?>">
+    <title><?php echo $app->getTitle() ?></title>
+    <meta name="description" content="<?php echo $app->getDescription() ?>">
     <link rel="stylesheet" href="assets/css/normalize.min.css">
     <link rel="stylesheet" href="assets/css/main.min.css">
 </head>
@@ -33,8 +33,8 @@ $userEdit = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 <body>
     <main>
         <div class="container">
-            <h1><?php echo $page->getTitle() ?></h1>
-            <p><?php echo $page->getDescription() ?></p>
+            <h1><?php echo $app->getTitle() ?></h1>
+            <p><?php echo $app->getDescription() ?></p>
         </div>
 
         <?php Functions::showNotification() ?>
@@ -148,7 +148,7 @@ $userEdit = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 
     <footer class="footer">
         <div class="container">
-            <?php echo $page->getFramework()->getCopyRight() ?>
+            <?php echo $app->getFramework()->getCopyRight() ?>
         </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -156,7 +156,7 @@ $userEdit = isset($_SESSION['user']) ? $_SESSION['user'] : null;
     <script>
         $(document).ready(function() {});
     </script>
-    <!-- version <?php echo $page->getFramework()->getVersion() ?> -->
+    <!-- version <?php echo $app->getFramework()->getVersion() ?> -->
 </body>
 
 </html>

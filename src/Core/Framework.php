@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Core;
 
-require_once dirname(__DIR__) . '/../vendor/autoload.php';
-
 /**
  * Framework class.
  *
@@ -186,5 +184,16 @@ class Framework
     final public function getLanguage() : string
     {
         return $this->config->getLanguage();
+    }
+
+    /**
+     * Returns the base path for the framework.
+     *
+     * @return string The base path for the framework.
+     *
+     */
+    final public function getBasePath() : string
+    {
+        return $this->config->getBasePath();
     }
 }
