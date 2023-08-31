@@ -196,8 +196,8 @@ class Application
      */
     private function dispatch() : void
     {
-        $controller = $this->uri[0] ?? 'home';
-        $action = $this->uri[1] ?? 'index';
+        $controller = $this->cleanController($this->uri[0] ?? 'home');
+        $action = $this->cleanAction($this->uri[1] ?? 'index');
         $params = [];
 
         try {
@@ -246,6 +246,63 @@ class Application
     }
 
     /**
+     * Replaces hyphens and underscores with spaces, capitalizes the first letter of each word,
+     * removes spaces and returns the resulting string.
+     *
+     * @param string $uriPart The URI part to be cleaned.
+     *
+     * @return string The cleaned URI part.
+     *
+     */
+    private function cleanUriPart(string $uriPart) : string {
+        $part = str_replace('-', ' ', $uriPart);
+        $part = str_replace('_', ' ', $part);
+        $part = ucwords($part);
+        $part = str_replace(' ', '', $part);
+        return $part;
+    }
+
+    /**
+     * Cleans the given action string by removing any unwanted characters.
+     *
+     * @param string $action The action string to be cleaned.
+     *
+     * @return string The cleaned action string.
+     *
+     */
+    private function cleanAction(string $action) : string {
+        return $this->cleanUriPart($action);
+    }
+
+    /**
+     * Cleans the given controller string by removing any unwanted characters.
+     *
+     * @param string $controller The controller string to be cleaned.
+     *
+     * @return string The cleaned controller string.
+     *
+     */
+    private function cleanController(string $controller) : string {
+        return $this->cleanUriPart($controller);
+    }
+
+    /**
+     * Cleans an array of parameters by converting special characters to HTML entities.
+     *
+     * @param array $params The array of parameters to be cleaned.
+     *
+     * @return array The cleaned array of parameters.
+     *
+     */
+    private function cleanParams(array $params) : array {
+        $cleanParams = [];
+        foreach ($params as $param) {
+            $cleanParams[] = htmlspecialchars($param);
+        }
+        return $cleanParams;
+    }
+
+    /**
      * Load parameters from the URI.
      *
      * @throws \Exception If there are too many parameters.
@@ -261,6 +318,6 @@ class Application
         if (count($params) > 200) {
             throw new \Exception('Too many parameters', StatusCode::HTTP_REQUEST_URI_TOO_LONG);
         }
-        return $params;
+        return $this->cleanParams($params);
     }
 }

@@ -93,4 +93,9 @@ class ErrorController
     {
         echo 'expectation failed';
     }
+
+    public function notImplemented(): void
+    {
+        echo 'not implemented yet';
+    }
 }
