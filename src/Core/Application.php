@@ -241,7 +241,7 @@ class Application
         $controllerName = $controller . 'Controller';
         $controller = CONTROLLERS_PATH . DS . $controllerName . '.php';
         if (!file_exists($controller)) {
-            throw new \Exception('Controller file not found', StatusCode::HTTP_NOT_IMPLEMENTED);
+            throw new \Exception('Controller file not found', StatusCode::HTTP_NOT_FOUND);
         }
         $controllerClass = CONTROLLERS_NAMESPACE . $controllerName;
         if (!class_exists($controllerClass)) {
@@ -249,7 +249,7 @@ class Application
         }
         $controller = new $controllerClass();
         if (!method_exists($controller, $action)) {
-            throw new \Exception('Action method not found', StatusCode::HTTP_NOT_FOUND);
+            throw new \Exception('Action method not found', StatusCode::HTTP_NOT_IMPLEMENTED);
         }
         return $controller;
     }

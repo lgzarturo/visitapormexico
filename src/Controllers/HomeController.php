@@ -23,6 +23,6 @@ class HomeController implements ControllerInterface
             'description' => 'Home page',
             'content' => 'Home page content'
         ];
-        Functions::render('home', $data);
+        Functions::render('home.index', $data);
     }
 }

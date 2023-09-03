@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Controllers;
+use App\Helpers\Functions;
 
 /**
  * ErrorController class.
@@ -26,7 +27,7 @@ class ErrorController implements ControllerInterface
 
     public function notFound(): void
     {
-        echo 'not found';
+        Functions::render('errors.not_found');
     }
 
     public function unauthorized(): void
