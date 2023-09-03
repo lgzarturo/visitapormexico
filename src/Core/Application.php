@@ -219,6 +219,7 @@ class Application
                 $e->getCode(),
                 $e->getMessage()
             ));
+            // TODO: Refactor this to use the enum class to get the action from the status code
             $action = StatusCode::getActionFromStatusCode($e->getCode());
             $controller = $this->loadAction('error', $action);
         }

@@ -10,7 +10,7 @@ use App\Helpers\Functions;
 /**
  * HomeController class.
  *
- * Represents a web page, is the base class for all web pages.
+ * Represents a web page.
  *
  * @package App\Controllers
  *

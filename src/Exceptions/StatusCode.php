@@ -14,6 +14,7 @@ namespace App\Exceptions;
  */
 class StatusCode
 {
+    // TODO: This class should be an enum.
     public const HTTP_CONTINUE = 100;
     public const HTTP_SWITCHING_PROTOCOLS = 101;
     public const HTTP_PROCESSING = 102;

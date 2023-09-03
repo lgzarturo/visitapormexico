@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+/**
+ * Redirect class.
+ *
+ * The Redirect class provides a simple way to redirect users to a new location.
+ *
+ * @package App\Core
+ *
+ */
 class Redirect {
     private string $location;
 
@@ -11,6 +19,14 @@ class Redirect {
         $this->location = $location;
     }
 
+    /**
+     * Redirects the user to the specified location.
+     *
+     * @param string $location The location to redirect to.
+     *
+     * @return void
+     *
+     */
     public static function to(string $location): void {
         $location = str_replace('.', DS, $location);
         $self = new self($location);

@@ -122,6 +122,20 @@ class Functions
         exit;
     }
 
+    /**
+     * Renders a view with the given data.
+     *
+     * The variable $object is used to convert the associative array $data to an object.
+     * This allows us to access the data in the view using the object's properties.
+     *
+     * @param string $view The name of the view file to render.
+     * @param array $data An associative array of data to be passed to the view.
+     *
+     * @throws \Exception If the view file does not exist.
+     *
+     * @return void
+     *
+     */
     public static function render(string $view, array $data = []): void
     {
         $view = str_replace('.', DS, $view);
@@ -134,6 +148,14 @@ class Functions
         require_once $view;
     }
 
+    /**
+     * Checks if a file exists and is readable and is a file.
+     *
+     * @param string $file The file path to check.
+     *
+     * @return bool Returns true if the file exists and is readable and is a file, false otherwise.
+     *
+     */
     public static function fileExists(string $file): bool {
         // Check if the controller file exists and is readable and is a file
         // The function file_exists() may return true if the file is a directory or a link to a directory
@@ -141,6 +163,14 @@ class Functions
         return file_exists($file) && is_readable($file) && is_file($file);
     }
 
+    /**
+     * Checks if a file does not exist.
+     *
+     * @param string $file The path to the file to check.
+     *
+     * @return bool Returns true if the file does not exist, false otherwise.
+     *
+     */
     public static function fileNotExists(string $file): bool {
         return !self::fileExists($file);
     }

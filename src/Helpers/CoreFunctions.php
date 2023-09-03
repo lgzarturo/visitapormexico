@@ -2,6 +2,12 @@
 
 use App\Helpers\Functions;
 
+/**
+ * Generates a random password consisting of 8 characters from the set of lowercase and uppercase letters and digits.
+ *
+ * @return string The generated password.
+ *
+ */
 function getRandomPassword() {
     $password = '';
     $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -27,6 +33,14 @@ function dd($data) {
     die();
 }
 
+/**
+ * Converts an array to an object.
+ *
+ * @param array $array The array to be converted.
+ *
+ * @return object The resulting object.
+ *
+ */
 function toObject(array $array): object {
     if (empty($array)) {
         return new stdClass();
@@ -34,10 +48,26 @@ function toObject(array $array): object {
     return json_decode(json_encode($array));
 }
 
+/**
+ * Checks if a file exists.
+ *
+ * @param string $file The path to the file to check.
+ *
+ * @return bool True if the file exists, false otherwise.
+ *
+ */
 function fileExists(string $file): bool {
     return Functions::fileExists($file);
 }
 
+/**
+ * Checks if a file does not exist.
+ *
+ * @param string $file The path to the file to check.
+ *
+ * @return bool Returns true if the file does not exist, false otherwise.
+ *
+ */
 function fileNotExists(string $file): bool {
     return Functions::fileNotExists($file);
 }

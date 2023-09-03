@@ -8,7 +8,7 @@ use App\Helpers\Functions;
 /**
  * ErrorController class.
  *
- * Represents a web page, is the base class for all web pages.
+ * Represents a error page.
  *
  * @package App\Controllers
  *
