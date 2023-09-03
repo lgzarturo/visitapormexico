@@ -1,4 +1,8 @@
-# Ejemplos con PHP 8.2
+# visitapormexico.com
+
+Catalogo de hoteles y promociones turística.
+
+## Ejemplos con PHP 8.2
 
 - calculator.php: Ejemplo de una calculadora simple para realizar operaciones básicas.
 - password.php: Ejemplo de como generar una contraseña aleatoria.

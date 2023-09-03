@@ -45,6 +45,7 @@ class Application
     private string $protocol;
     private string $url;
     private array $uri = [];
+    private static ?self $instance = null;
 
 
     /**
@@ -78,7 +79,9 @@ class Application
         );
         $this->security = Security::init();
         $this->framework->info('Webapp started');
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $this->autoload();
         $this->title = $title;
         $this->description = $description;
@@ -97,7 +100,13 @@ class Application
      */
     final public static function init(string $title, string $description): self
     {
-        return new self($title, $description);
+        if (!self::$instance) {
+            self::$instance = new self($title, $description);
+        } else {
+            self::$instance->title = $title;
+            self::$instance->description = $description;
+        }
+        return self::$instance;
     }
 
     /**
