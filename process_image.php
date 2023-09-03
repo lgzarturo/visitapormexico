@@ -25,6 +25,7 @@ if ($image !== null) {
     $defaultFilter = $image['filter'];
 }
 
+// TODO: Move this code to a Pages directory.
 ?>
 <!doctype html>
 <html lang="en">

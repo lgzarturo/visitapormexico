@@ -10,6 +10,7 @@ use App\Core\Application;
 
 $app = Application::init('Exercises', 'Php Exercises App - Home Page');
 
+// TODO: Move this code to a Pages directory.
 ?>
 <!doctype html>
 <html lang="en">

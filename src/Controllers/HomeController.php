@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Core\Database;
 use App\Core\Notification;
 use App\Helpers\Functions;
+use Exception;
 
 /**
  * HomeController class.
@@ -51,5 +53,17 @@ class HomeController implements ControllerInterface
             'content' => 'Contact page content'
         ];
         Functions::render('home.notify', $data);
+    }
+
+    public function users(): void
+    {
+        try {
+            $res = Database::query('SELECT * FROM users');
+            //dd($res);
+            $res = Database::query('SELECT * FROM users WHERE email = :email', ['email' => 'user8@example.com']);
+            dd($res);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
     }
 }

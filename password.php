@@ -26,6 +26,7 @@ if (isset($_GET['restart'])) {
     exit;
 }
 
+// TODO: Move this code to a Pages directory.
 ?>
 <!doctype html>
 <html lang="en">

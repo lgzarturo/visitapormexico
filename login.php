@@ -17,6 +17,7 @@ if (isset($_POST) && !empty($_POST)) {
 }
 Login::getCurrentUser();
 
+// TODO: Move this code to a Pages directory.
 ?>
 <!doctype html>
 <html lang="en">

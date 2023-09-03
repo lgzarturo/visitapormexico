@@ -9,6 +9,8 @@ use App\Core\Application;
 $app = Application::init('CSS Exercises', 'CSS Practice Exercises App - Home Page');
 
 $theme = $_GET['theme'] ?? 'light';
+
+// TODO: Move this code to a Pages directory.
 ?>
 <!doctype html>
 <html lang="en">

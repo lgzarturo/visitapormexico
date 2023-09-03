@@ -78,4 +78,56 @@ class Database
             throw new Exception(sprintf('Error connecting to the database: %s', $e->getMessage()));
         }
     }
+
+    /**
+     * Executes a SQL query with optional parameters and returns the results.
+     *
+     * @param string $sql The SQL query to execute.
+     * @param array $params An array of parameters to bind to the query.
+     *
+     * @throws Exception If the query fails or is invalid.
+     *
+     * @return array The results of the query, if any.
+     *
+     */
+    public static function query(string $sql, array $params = []): array
+    {
+        $connection = self::connect();
+        $connection->beginTransaction();
+        $statement = $connection->prepare($sql);
+        // If the query fails, the transaction is rolled back and an exception is thrown.
+        if (!$statement->execute($params)) {
+            $connection->rollBack();
+            $error = $statement->errorInfo();
+            $connection = null;
+            throw new Exception(sprintf('Error executing query: %s', $error[2]));
+        }
+
+        // Handle types of queries, SELECT, INSERT, UPDATE, DELETE and return the results.
+        $results = [];
+        if (stripos($sql, 'SELECT') === 0) {
+            $results = $statement->fetchAll();
+        } elseif (stripos($sql, 'INSERT') === 0) {
+            $results = ['id' => $connection->lastInsertId()];
+            $connection->commit();
+        } elseif (stripos($sql, 'UPDATE') === 0 || stripos($sql, 'DELETE') === 0) {
+            // TODO: Improve this code to handle UPDATE and DELETE queries without a WHERE clause.
+            if (stripos($sql, 'WHERE') === false) {
+                throw new Exception('The query must contain a WHERE clause');
+            }
+            $count = $statement->rowCount();
+            if ($count > 0) {
+                $results = ['affected_rows' => $statement->rowCount()];
+                $connection->commit();
+            } else {
+                $results = ['affected_rows' => 0];
+                $connection->rollBack();
+            }
+        } else {
+            $connection->commit();
+        }
+
+        $connection = null;
+        return $results;
+    }
 }

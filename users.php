@@ -15,6 +15,7 @@ $users = ListItems::getAll();
 
 $userEdit = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 
+// TODO: Move this code to a Pages directory.
 ?>
 <!doctype html>
 <html lang="en">

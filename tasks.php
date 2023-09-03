@@ -12,6 +12,8 @@ $app = Application::init('Task', 'Task Manager App');
 $notification = isset($_SESSION['notification']) ? $_SESSION['notification'] : null;
 
 $tasks = isset($_SESSION['tasks']) ? $_SESSION['tasks'] : null;
+
+// TODO: Move this code to a Pages directory.
 ?>
 <!doctype html>
 <html lang="en">

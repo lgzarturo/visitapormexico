@@ -9,6 +9,7 @@ use App\Core\Application;
 
 $app = Application::init('Exercises', 'HTML y Javascript Exercises App - Home Page');
 
+// TODO: Move this code to a Pages directory.
 ?>
 <!doctype html>
 <html lang="en">

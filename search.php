@@ -18,6 +18,7 @@ if ($searchQuery !== null) {
     $results = Search::execute(['term' => $searchQuery]);
 }
 
+// TODO: Move this code to a Pages directory.
 ?>
 <!doctype html>
 <html lang="en">
