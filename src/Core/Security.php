@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Core\Object\TokenCsrf;
+
 /**
  * Security class.
  *
@@ -16,7 +18,10 @@ class Security
 {
     private string $key;
     private string $salt;
-    private string $csrfToken;
+    private TokenCsrf $csrfToken;
+    private string $csrfTokenName = 'csrf_token';
+    private int $csrfTokenLength = 32;
+    private int $csrfTokenExpiration = 60 * 5;
 
     private function __construct()
     {
@@ -36,21 +41,33 @@ class Security
         return $this->key;
     }
 
-    public function generateCSRFToken(): string
+    private function generateRandomString(int $length = 32): string
     {
-        $token = bin2hex(random_bytes(32));
-        $_SESSION['csrf_token'] = $token;
-        return $token;
+        if (function_exists('random_bytes')) {
+            $randomString = bin2hex(random_bytes($length));
+        } else {
+            $randomString = bin2hex(openssl_random_pseudo_bytes($length));
+        }
+        return $randomString;
     }
 
-    public function getCSRFToken(): string
+    public function generateCSRFToken(): TokenCsrf
+    {
+        $token = $this->generateRandomString($this->csrfTokenLength);
+        $tokenExpiration = time() + $this->csrfTokenExpiration;
+        $tokenCsrf = new TokenCsrf($token, $this->csrfTokenLength, $tokenExpiration);
+        $_SESSION[$this->csrfTokenName] = $tokenCsrf;
+        return $tokenCsrf;
+    }
+
+    public function getCSRFToken(): TokenCsrf
     {
         return $this->csrfToken;
     }
 
     public function generateSalt(): string
     {
-        $salt = '$2y$10$' . bin2hex(random_bytes(22)) . '$';
+        $salt = '$2y$10$' . $this->generateRandomString(22) . '$';
         $_SESSION['salt'] = $salt;
         return $salt;
     }
@@ -62,6 +79,20 @@ class Security
 
     public static function init(): Security
     {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         return new Security();
+    }
+
+    public function validateCSRFToken(string $token): bool
+    {
+        if (isset($_SESSION[$this->csrfTokenName])) {
+            $tokenCsrf = $_SESSION[$this->csrfTokenName];
+            if ($tokenCsrf->getToken() === $token && $tokenCsrf->getExpiration() > time()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

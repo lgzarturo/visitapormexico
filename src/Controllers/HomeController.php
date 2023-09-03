@@ -79,4 +79,9 @@ class HomeController  extends BaseController implements ControllerInterface
             die($e->getMessage());
         }
     }
+
+    public function csrf(): void
+    {
+        dd($_SESSION);
+    }
 }

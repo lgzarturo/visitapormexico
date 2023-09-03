@@ -80,9 +80,6 @@ class Application
         );
         $this->security = Security::init();
         $this->framework->info('Webapp started');
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
         $this->autoload();
         $this->title = $title;
         $this->description = $description;

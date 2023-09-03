@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 namespace App\Controllers;
+
+use App\Core\Object\BaseController;
 use App\Helpers\Functions;
 
 /**
@@ -13,7 +15,7 @@ use App\Helpers\Functions;
  * @package App\Controllers
  *
  */
-class ErrorController implements ControllerInterface
+class ErrorController extends BaseController implements ControllerInterface
 {
     public function index(): void
     {
