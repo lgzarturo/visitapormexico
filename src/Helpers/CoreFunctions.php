@@ -1,5 +1,7 @@
 <?php
 
+use App\Helpers\Functions;
+
 function getRandomPassword() {
     $password = '';
     $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -30,4 +32,12 @@ function toObject(array $array): object {
         return new stdClass();
     }
     return json_decode(json_encode($array));
+}
+
+function fileExists(string $file): bool {
+    return Functions::fileExists($file);
+}
+
+function fileNotExists(string $file): bool {
+    return Functions::fileNotExists($file);
 }

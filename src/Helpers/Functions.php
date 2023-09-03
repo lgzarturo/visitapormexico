@@ -116,11 +116,22 @@ class Functions
     {
         $view = str_replace('.', DS, $view);
         $view = VIEWS_PATH . DS . $view . '.php';
-        if (!file_exists($view)) {
+        if (self::fileNotExists($view)) {
             throw new \Exception(sprintf('View %s not found', $view));
         }
         $object = toObject($data);
         extract($data);
         require_once $view;
+    }
+
+    public static function fileExists(string $file): bool {
+        // Check if the controller file exists and is readable and is a file
+        // The function file_exists() may return true if the file is a directory or a link to a directory
+        // This is why we need to check if the file is a file using the is_file() function
+        return file_exists($file) && is_readable($file) && is_file($file);
+    }
+
+    public static function fileNotExists(string $file): bool {
+        return !self::fileExists($file);
     }
 }

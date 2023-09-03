@@ -240,7 +240,7 @@ class Application
         $controller = ucfirst($controller);
         $controllerName = $controller . 'Controller';
         $controller = CONTROLLERS_PATH . DS . $controllerName . '.php';
-        if (!file_exists($controller)) {
+        if (fileNotExists($controller)) {
             throw new \Exception('Controller file not found', StatusCode::HTTP_NOT_FOUND);
         }
         $controllerClass = CONTROLLERS_NAMESPACE . $controllerName;

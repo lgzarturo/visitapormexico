@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Helpers\Functions;
 use Monolog\Level;
 
 // Define DS as the directory separator
@@ -59,7 +60,7 @@ class Config
         $this->timezone = $timezone;
         $this->language = $language;
         $this->autoloadFile = $this->basePath . DS . 'vendor' . DS . 'autoload.php';
-        if (!file_exists($this->autoloadFile)) {
+        if (Functions::fileNotExists($this->autoloadFile)) {
             throw new \Exception('Autoload file not found');
         }
         require_once $this->autoloadFile;
