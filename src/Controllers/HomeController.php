@@ -6,7 +6,9 @@ namespace App\Controllers;
 
 use App\Core\Database;
 use App\Core\Notification;
+use App\Core\Object\BaseController;
 use App\Helpers\Functions;
+use App\Models\User;
 use Exception;
 
 /**
@@ -17,7 +19,7 @@ use Exception;
  * @package App\Controllers
  *
  */
-class HomeController implements ControllerInterface
+class HomeController  extends BaseController implements ControllerInterface
 {
     public function index(): void
     {
@@ -59,9 +61,20 @@ class HomeController implements ControllerInterface
     {
         try {
             $res = Database::query('SELECT * FROM users');
-            //dd($res);
+            dd($res);
             $res = Database::query('SELECT * FROM users WHERE email = :email', ['email' => 'user8@example.com']);
             dd($res);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function user(): void
+    {
+        try {
+            $user = new User('usuario1', 'user1@gmail.com', 'active', 1);
+
+            $user->add();
         } catch (Exception $e) {
             die($e->getMessage());
         }
