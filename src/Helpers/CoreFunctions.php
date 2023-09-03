@@ -24,3 +24,10 @@ function dd($data) {
     echo '</pre>';
     die();
 }
+
+function toObject(array $array): object {
+    if (empty($array)) {
+        return new stdClass();
+    }
+    return json_decode(json_encode($array));
+}

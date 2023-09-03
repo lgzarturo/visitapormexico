@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Helpers\Functions;
+
 /**
  * HomeController class.
  *
@@ -16,6 +18,11 @@ class HomeController implements ControllerInterface
 {
     public function index(): void
     {
-        require_once VIEWS_PATH . DS . 'home.php';
+        $data = [
+            'title' => 'Home',
+            'description' => 'Home page',
+            'content' => 'Home page content'
+        ];
+        Functions::render('home', $data);
     }
 }

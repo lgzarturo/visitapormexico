@@ -111,4 +111,16 @@ class Functions
         header(sprintf('Location: %s.php%s', $path, $query));
         exit;
     }
+
+    public static function render(string $view, array $data = []): void
+    {
+        $view = str_replace('.', DS, $view);
+        $view = VIEWS_PATH . DS . $view . '.php';
+        if (!file_exists($view)) {
+            throw new \Exception(sprintf('View %s not found', $view));
+        }
+        $object = toObject($data);
+        extract($data);
+        require_once $view;
+    }
 }
