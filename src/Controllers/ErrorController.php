@@ -12,8 +12,13 @@ namespace App\Controllers;
  * @package App\Controllers
  *
  */
-class ErrorController
+class ErrorController implements ControllerInterface
 {
+    public function index(): void
+    {
+        echo 'error';
+    }
+
     public function serverError(): void
     {
         echo 'server error';

@@ -12,10 +12,10 @@ namespace App\Controllers;
  * @package App\Controllers
  *
  */
-class HomeController
+class HomeController implements ControllerInterface
 {
     public function index(): void
     {
-        echo 'Hello world!';
+        require_once VIEWS_PATH . DS . 'home.php';
     }
 }
