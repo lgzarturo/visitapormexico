@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Helpers;
 
+use App\Core\Notification;
+use App\Core\Redirect;
+
 /**
  * Functions class.
  *
@@ -61,18 +64,28 @@ class Functions
      */
     public static function showNotification(): void
     {
-        $template_html = '
-        <div class="container">
+        $notifications = Notification::get();
+        if (empty($notifications)) {
+            return;
+        }
+        $notificationsHtml = '';
+        var_dump($notifications);
+        if (empty($notifications)) {
+            return;
+        }
+        foreach ($notifications as $notification) {
+            if (!$notification instanceof \App\Core\Object\Notification) {
+                continue;
+            }
+            $item = '
             <div class="notification">
                 <p class="notification__text notification--%s">%s</p>
             </div>
-        </div>
-        ';
-        if (isset($_SESSION['notification'])) {
-            $notification = $_SESSION['notification'];
-            echo sprintf($template_html, $notification['type'], $notification['content']);
-            unset($_SESSION['notification']);
+            ';
+            $notificationsHtml .= sprintf($item, $notification->getType()->value, $notification->getMessage());
         }
+        $templateHtml = '<div class="container">%s</div>';
+        echo sprintf($templateHtml, $notificationsHtml);
     }
 
     /**
@@ -86,10 +99,7 @@ class Functions
      */
     public static function createNotification(string $type, string $content): bool
     {
-        $_SESSION['notification'] = [
-            'type' => $type,
-            'content' => $content
-        ];
+        Notification::new($content, $type);
         return true;
     }
 
@@ -108,7 +118,7 @@ class Functions
         if (!empty($params)) {
             $query = sprintf('?%s', http_build_query($params));
         }
-        header(sprintf('Location: %s.php%s', $path, $query));
+        Redirect::to(sprintf('%s.php%s', $path, $query));
         exit;
     }
 
