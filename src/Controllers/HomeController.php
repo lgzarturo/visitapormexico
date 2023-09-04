@@ -84,4 +84,24 @@ class HomeController  extends BaseController implements ControllerInterface
     {
         dd($_SESSION);
     }
+
+    public function expenses(): void
+    {
+        $data = [
+            'title' => 'Expenses',
+            'description' => 'Expenses page',
+            'content' => 'Expenses page content'
+        ];
+        Functions::render('home.expenses', $data);
+    }
+
+    public function movements(): void
+    {
+        $data = [
+            'title' => 'Movements',
+            'description' => 'Movements page',
+            'content' => 'Movements page content'
+        ];
+        Functions::render('home.movements', $data);
+    }
 }
