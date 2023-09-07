@@ -169,28 +169,35 @@ class Functions
         }
         $matches = array_map('trim', $matches);
         $layoutName = isset($matches[1]) ? $matches[1] : '';
-        $content = str_replace("{{ extends:".$layoutName." }}", '', $content);
-        $layout = LAYOUTS_PATH . DS . $layoutName . '.html';
-        if (self::fileNotExists($layout)) {
+        $content = str_replace("{{ extends:$layoutName }}", '', $content);
+        $layoutPath = LAYOUTS_PATH . DS . "$layoutName.html";
+
+        if (self::fileNotExists($layoutPath)) {
             throw new \Exception(sprintf('Layout %s not found', $layoutName));
         }
-        $lang = isset($_SESSION['lang']) ? $_SESSION['lang'] : 'es';
-        $lang = isset($object->lang) ? $object->lang : $lang;
-        $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'dark';
-        $theme = isset($object->theme) ? $object->theme : $theme;
-        $title = isset($object->title) ? $object->title : '';
-        $description = isset($object->description) ? $object->description : '';
-        $header = isset($object->header) ? $object->header : '';
-        $footer = isset($object->footer) ? $object->footer : '';
-        $html = file_get_contents($layout);
-        $html = str_replace('{{ lang }}', $lang, $html);
-        $html = str_replace('{{ theme }}', $theme, $html);
-        $html = str_replace('{{ title }}', $title, $html);
-        $html = str_replace('{{ description }}', $description, $html);
-        $html = str_replace('{{ header }}', $header, $html);
-        $html = str_replace('{{ content }}', $content, $html);
-        $html = str_replace('{{ footer }}', $footer, $html);
-        return $html;
+
+        $lang = $object->lang ?? ($_SESSION['lang'] ?? 'es');
+        $theme = $object->theme ?? ($_SESSION['theme'] ?? 'dark');
+        $title = $object->title ?? '';
+        $description = $object->description ?? '';
+        $header = $object->header ?? '';
+        $footer = $object->footer ?? '';
+        $version = $object->version ?? '';
+
+        $html = file_get_contents($layoutPath);
+
+        $replacements = [
+            '{{ lang }}' => $lang,
+            '{{ theme }}' => $theme,
+            '{{ title }}' => $title,
+            '{{ description }}' => $description,
+            '{{ header }}' => $header,
+            '{{ content }}' => $content,
+            '{{ footer }}' => $footer,
+            '{{ version }}' => $version,
+        ];
+
+        return str_replace(array_keys($replacements), array_values($replacements), $html);
     }
 
     /**

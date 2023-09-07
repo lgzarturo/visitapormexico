@@ -9,15 +9,23 @@
   <meta name="description" content="{{ description }}">
   <link rel="stylesheet" href="assets/css/normalize.min.css">
   <link rel="stylesheet" href="assets/css/main.min.css">
+  <link rel="stylesheet" href="assets/js/plugins/waitMe.min.css">
+  <link rel="stylesheet" href="assets/js/plugins/toastr.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
     integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer src="assets/js/main.min.js" type="application/javascript"></script>
+  <script defer src="assets/js/plugins/waitMe.min.js" type="application/javascript"></script>
+  <script defer src="assets/js/plugins/toastr.min.js" type="application/javascript"></script>
 </head>
 <body class="{{ theme }}">
-  {{ header }}
+  <main>
+    {{ header }}
 
-  {{ content }}
+    <section class="container">
+      {{ content }}
+    </section>
+  </main>
 
   <footer class="footer">
     <div class="container">
@@ -28,5 +36,6 @@
   <script>
     $(document).ready(function () { });
   </script>
+  <!-- {{ version }} -->
 </body>
 </html>

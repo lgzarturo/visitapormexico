@@ -27,7 +27,8 @@ class BaseController
             'footer' => $this->app->getFramework()->getCopyRight(),
             'lang' => $this->app->getFramework()->getLanguage(),
             'salt' => $this->salt,
-            'csrfToken' => $this->csrfToken->getValue()
+            'csrfToken' => $this->csrfToken->getValue(),
+            'version' => "v{$this->app->getFramework()->getVersion()}",
         ];
     }
 }

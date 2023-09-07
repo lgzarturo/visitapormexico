@@ -18,5 +18,5 @@ echo '</pre>';
 
 ?>
 <script type="text/javascript">
-    console.log('Hola mundo');
+    console.log('<?php echo $object->salt; ?>');
 </script>
