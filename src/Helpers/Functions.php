@@ -69,7 +69,6 @@ class Functions
             return;
         }
         $notificationsHtml = '';
-        var_dump($notifications);
         if (empty($notifications)) {
             return;
         }
@@ -145,7 +144,53 @@ class Functions
         }
         $object = toObject($data);
         extract($data);
-        require_once $view;
+        ob_start();
+        include_once $view;
+        echo self::loadLayout(ob_get_clean(), $object);
+    }
+
+    /**
+     * Loads a layout file and replaces its placeholders with the provided content and object properties.
+     *
+     * @param string $content The content to be inserted into the layout file.
+     * @param object $object An object containing properties to be used as placeholders in the layout file.
+     *
+     * @throws \Exception If the layout file specified in the "extends" tag is not found.
+     *
+     * @return string The final HTML content with all placeholders replaced.
+     */
+    private static function loadLayout(string $content, object $object): string
+    {
+        $pattern = '/{{ extends:(.*) }}/';
+        $matches = [];
+        preg_match($pattern, $content, $matches);
+        if (empty($matches)) {
+            return $content;
+        }
+        $matches = array_map('trim', $matches);
+        $layoutName = isset($matches[1]) ? $matches[1] : '';
+        $content = str_replace("{{ extends:".$layoutName." }}", '', $content);
+        $layout = LAYOUTS_PATH . DS . $layoutName . '.html';
+        if (self::fileNotExists($layout)) {
+            throw new \Exception(sprintf('Layout %s not found', $layoutName));
+        }
+        $lang = isset($_SESSION['lang']) ? $_SESSION['lang'] : 'es';
+        $lang = isset($object->lang) ? $object->lang : $lang;
+        $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'dark';
+        $theme = isset($object->theme) ? $object->theme : $theme;
+        $title = isset($object->title) ? $object->title : '';
+        $description = isset($object->description) ? $object->description : '';
+        $header = isset($object->header) ? $object->header : '';
+        $footer = isset($object->footer) ? $object->footer : '';
+        $html = file_get_contents($layout);
+        $html = str_replace('{{ lang }}', $lang, $html);
+        $html = str_replace('{{ theme }}', $theme, $html);
+        $html = str_replace('{{ title }}', $title, $html);
+        $html = str_replace('{{ description }}', $description, $html);
+        $html = str_replace('{{ header }}', $header, $html);
+        $html = str_replace('{{ content }}', $content, $html);
+        $html = str_replace('{{ footer }}', $footer, $html);
+        return $html;
     }
 
     /**

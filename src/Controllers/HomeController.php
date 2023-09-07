@@ -23,12 +23,8 @@ class HomeController  extends BaseController implements ControllerInterface
 {
     public function index(): void
     {
-        $data = [
-            'title' => 'Home',
-            'description' => 'Home page',
-            'content' => 'Home page content'
-        ];
-        Functions::render('home.index', $data);
+        $this->data['title'] = 'Home page';
+        Functions::render('home.index', $this->data);
     }
 
     public function about(): void

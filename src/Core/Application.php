@@ -246,7 +246,7 @@ class Application
         if (!class_exists($controllerClass)) {
             throw new \Exception('Controller class not found', StatusCode::HTTP_INTERNAL_SERVER_ERROR);
         }
-        $controller = new $controllerClass();
+        $controller = new $controllerClass($this);
         if (!method_exists($controller, $action)) {
             throw new \Exception('Action method not found', StatusCode::HTTP_NOT_IMPLEMENTED);
         }

@@ -57,6 +57,7 @@ class Security
         $tokenExpiration = time() + $this->csrfTokenExpiration;
         $tokenCsrf = new TokenCsrf($token, $this->csrfTokenLength, $tokenExpiration);
         $_SESSION[$this->csrfTokenName] = $tokenCsrf;
+        $this->csrfToken = $tokenCsrf;
         return $tokenCsrf;
     }
 
@@ -69,6 +70,7 @@ class Security
     {
         $salt = '$2y$10$' . $this->generateRandomString(22) . '$';
         $_SESSION['salt'] = $salt;
+        $this->salt = $salt;
         return $salt;
     }
 

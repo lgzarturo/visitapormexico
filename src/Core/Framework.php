@@ -196,4 +196,15 @@ class Framework
     {
         return $this->config->getBasePath();
     }
+
+    /**
+     * Returns the log instance.
+     *
+     * @return Log The log instance.
+     *
+     */
+    final public function getLog() : Log
+    {
+        return $this->log;
+    }
 }
